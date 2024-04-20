@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome to Web Crawler!</h1>
+        <p class="lead">This is a simple web application designed to crawl the web and gather specific data for analysis.</p>
+        <hr class="my-4">
+        <p>Use the navigation bar to register, log in, or access other pages.</p>
+        {% if current_user.is_authenticated %}
+            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+        {% else %}
+            <a class="btn btn-primary btn-lg" href="{{ url_for('register') }}" role="button">Register Now</a>
+        {% endif %}
+    </div>
+
+    <div class="container">
+        <h2>Features:</h2>
+        <ul>
+            <li>User registration and login system.</li>
+            <li>Ability to enter a URL to be crawled.</li>
+            <li>Settings to define the depth of crawling.</li>
+            <li>Display and download of found PDF documents.</li>
+            <li>Statistics of the most frequent words in the documents.</li>
+            <li>Creation of a word cloud from the collected data.</li>
+        </ul>
+    </div>
+{% endblock %}
