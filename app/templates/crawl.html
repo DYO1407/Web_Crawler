@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Web Crawler Interface</h1>
+    <h2>Enter a URL to Crawl:</h2>
+    <form id="urlForm" method="post" action="{{ url_for('start_crawl') }}">
+        <div class="form-group">
+            <label for="urlInput">URL:</label>
+            <input type="url" class="form-control" id="urlInput" name="url" required placeholder="Enter URL here...">
+        </div>
+        <div class="form-group">
+            <label for="depthSelect">Depth of Crawling:</label>
+            <select class="form-control" id="depthSelect" name="depth">
+                <option value="1">Level 1 - Only this URL</option>
+                <option value="2">Level 2 - This URL and links on the same domain</option>
+                <option value="3">Level 3 - This URL, same domain links, and external links</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Start Crawling</button>
+    </form>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    {% if links %}
+    <div class="mt-4">
+        <h2>Found Links:</h2>
+        <ul>
+            {% for link in links %}
+            <li><a href="{{ link }}" target="_blank">{{ link }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

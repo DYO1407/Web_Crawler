@@ -6,8 +6,13 @@ from app.models import User
 from flask_mail import Message
 from app import mail
 import secrets
-
+from validators import url as url_validator
+from requests.exceptions import ConnectionError, Timeout, RequestException
 from run import hello
+import requests
+
+from bs4 import BeautifulSoup
+from urllib.parse import urljoin, urlparse
 
 
 
@@ -20,6 +25,99 @@ def load_user(user_id):
 def home():
     
     return render_template('index.html')
+
+
+@app.route('/crawl', methods=['GET'])
+@login_required
+def crawl_page():
+    # Stellen Sie sicher, dass hier nur 'crawl.html' gerendert wird.
+    return render_template('crawl.html')
+
+
+#@app.route('/validate', methods=['GET'])
+##@login_required
+#def validate():
+ #   return render_template('crawl.html')
+
+
+# Login
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    message = hello()
+    print("Message from hello():", message) 
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+        remember = True if request.form.get('remember') else False
+        
+        user = User.query.filter_by(email=email).first()
+        
+        if user and check_password_hash(user.password, password):
+            login_user(user, remember=remember)
+            # Ändere die Weiterleitung zur neuen Crawl-Seite
+            return redirect(url_for('crawl_page'))
+        else:
+            flash('Falsche Login-Daten!')
+    
+    return render_template('login.html')
+
+def is_valid(url):
+    """Überprüft, ob `url` eine gültige URL ist."""
+    parsed = urlparse(url)
+    return bool(parsed.netloc) and bool(parsed.scheme)
+
+def get_all_links(url, soup):
+    """Extrahiert und gibt alle Links von einer BeautifulSoup-Objekt zurück."""
+    links = set()
+    for link in soup.find_all('a', href=True):
+        href = link['href']
+        if is_valid(href):
+            full_url = urljoin(url, href)
+            links.add(full_url)
+    return links
+
+def crawl(url, max_depth):
+    visited = set()  # Set to store visited URLs to avoid revisiting
+    to_visit = [url]  # Starting with the initial URL
+
+    while to_visit and max_depth > 0:
+        current_url = to_visit.pop(0)
+        if current_url not in visited:
+            visited.add(current_url)
+            try:
+                response = requests.get(current_url, timeout=10)
+                if response.ok:  # Checks if the response status code is less than 400
+                    soup = BeautifulSoup(response.text, 'html.parser')
+                    links = get_all_links(current_url, soup)
+                    to_visit.extend(links - visited)  # Adds new links that haven't been visited
+            except requests.RequestException as e:
+                print(f"An error occurred: {e}")
+        max_depth -= 1  # Reduces depth with each loop iteration
+
+    return visited
+
+
+@app.route('/start_crawl', methods=['POST'])
+@login_required
+def start_crawl():
+    url = request.form['url']
+    depth = int(request.form.get('depth', 1))
+    links = []
+
+    if not url_validator(url):
+        flash('Ungültige URL. Bitte geben Sie eine gültige URL ein.', 'danger')
+        return render_template('crawl.html', links=links)
+
+    try:
+        links = crawl(url, depth)
+        flash(f'Die Webseite ist gültig und erreichbar! {len(links)} Links gefunden.', 'success')
+    except Exception as e:
+        flash(f'Ein Fehler ist aufgetreten: {str(e)}', 'danger')
+
+    return render_template('crawl.html', links=links)
+
+
+
 
 # Registrierung
 @app.route('/register', methods=['GET', 'POST'])
@@ -49,26 +147,7 @@ def register():
     return render_template('register.html')
 
 
-# Login
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    message = hello()
-    print("Message from hello():", message) 
-    if request.method == 'POST':
-        email = request.form.get('email')
-        password = request.form.get('password')
-        remember = True if request.form.get('remember') else False
-        
-        user = User.query.filter_by(email=email).first()
-        
-        # Prüfe, ob der Benutzer existiert und das Passwort korrekt ist
-        if user and check_password_hash(user.password, password):
-            login_user(user, remember=remember)
-            return redirect(url_for('home'))
-        else:
-            flash('Falsche Login-Daten!')
-    
-    return render_template('login.html')
+
 
 # Logout
 @app.route('/logout')
