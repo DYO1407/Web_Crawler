@@ -28,15 +28,27 @@
             {% endfor %}
         {% endif %}
     {% endwith %}
-    {% if links %}
     <div class="mt-4">
-        <h2>Found Links:</h2>
-        <ul>
-            {% for link in links %}
-            <li><a href="{{ link }}" target="_blank">{{ link }}</a></li>
-            {% endfor %}
-        </ul>
+        <h2>Visited URLs:</h2>
+        {% if visited %}
+            <ul>
+                {% for url in visited %}
+                <li><a href="{{ url }}" target="_blank">{{ url }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No URLs visited.</p>
+        {% endif %}
+        <h2>PDF Links Found:</h2>
+        {% if pdf_links %}
+            <ul>
+                {% for link in pdf_links %}
+                <li><a href="{{ link }}" target="_blank">{{ link }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No PDF links found.</p>
+        {% endif %}
     </div>
-    {% endif %}
 </div>
 {% endblock %}

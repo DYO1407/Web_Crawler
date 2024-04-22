@@ -2,7 +2,7 @@ from flask import Flask, render_template, redirect, url_for, request, flash, ses
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required, current_user
 from app import app, db, login_manager
-from app.models import User
+from app.models import User , CrawlData
 from flask_mail import Message
 from app import mail
 import secrets
@@ -13,6 +13,10 @@ import requests
 
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse
+import aiohttp
+
+
+from datetime import datetime
 
 
 
@@ -61,63 +65,111 @@ def login():
     
     return render_template('login.html')
 
+@app.route('/profile')
+@login_required
+def profile():
+    # Holen Sie die Crawling-Daten für den aktuellen Benutzer
+    crawl_records = CrawlData.query.filter_by(user_id=current_user.id).all()
+    return render_template('profile.html', crawl_records=crawl_records)
+
+
+async def fetch(session, url):
+    try:
+        async with session.get(url, timeout=10) as response:
+            response.raise_for_status()
+            content_type = response.headers.get('Content-Type', '').lower()
+            if 'application/pdf' in content_type:
+                # If the content is a PDF, return the URL (do not attempt to decode content)
+                return url
+            elif 'text/html' in content_type:
+                # If the content is HTML, return the decoded text
+                return await response.text()
+            else:
+                # If the content is neither PDF nor HTML, ignore it
+                return None
+    except Exception as e:
+        print(f"Error fetching {url}: {e}")
+        return None
+
 def is_valid(url):
-    """Überprüft, ob `url` eine gültige URL ist."""
+    """Check if `url` is a valid URL."""
     parsed = urlparse(url)
-    return bool(parsed.netloc) and bool(parsed.scheme)
+    return bool(parsed.netloc) and bool(parsed.scheme) and parsed.scheme in ['http', 'https']
 
 def get_all_links(url, soup):
-    """Extrahiert und gibt alle Links von einer BeautifulSoup-Objekt zurück."""
+    """Extract and return all links from a BeautifulSoup object."""
     links = set()
     for link in soup.find_all('a', href=True):
         href = link['href']
-        if is_valid(href):
-            full_url = urljoin(url, href)
+        full_url = urljoin(url, href)
+        if is_valid(full_url):
             links.add(full_url)
     return links
 
-def crawl(url, max_depth):
-    visited = set()  # Set to store visited URLs to avoid revisiting
-    to_visit = [url]  # Starting with the initial URL
+def find_pdf_links(url, soup):
+    """Identify and return a list of PDF links from a BeautifulSoup object."""
+    pdf_links = set()
+    for link in soup.find_all('a', href=True):
+        href = link['href']
+        full_url = urljoin(url, href)
+        if '.pdf' in full_url.lower():
+            pdf_links.add(full_url)
+    return pdf_links
 
-    while to_visit and max_depth > 0:
-        current_url = to_visit.pop(0)
-        if current_url not in visited:
+async def crawl(url, level):
+    visited = set()
+    to_visit = [(url, 1)]
+    all_pdf_links = set()
+    base_domain = urlparse(url).netloc
+
+    async with aiohttp.ClientSession() as session:
+        while to_visit:
+            current_url, _ = to_visit.pop(0)
+            if current_url in visited:
+                continue
             visited.add(current_url)
-            try:
-                response = requests.get(current_url, timeout=10)
-                if response.ok:  # Checks if the response status code is less than 400
-                    soup = BeautifulSoup(response.text, 'html.parser')
-                    links = get_all_links(current_url, soup)
-                    to_visit.extend(links - visited)  # Adds new links that haven't been visited
-            except requests.RequestException as e:
-                print(f"An error occurred: {e}")
-        max_depth -= 1  # Reduces depth with each loop iteration
 
-    return visited
+            content = await fetch(session, current_url)
+            if content and current_url == content:
+                # If the content returned is a URL, it's a PDF link
+                all_pdf_links.add(content)
+            elif content:
+                # Process HTML content
+                soup = BeautifulSoup(content, 'html.parser')
+                pdf_links = find_pdf_links(current_url, soup)
+                all_pdf_links.update(pdf_links)
+
+                if level == 1:
+                    continue  # Stop if level 1
+
+                links = get_all_links(current_url, soup)
+                for link in links:
+                    link_domain = urlparse(link).netloc
+                    if (level == 2 and link_domain == base_domain) or level == 3:
+                        to_visit.append((link, 1))
+
+                        # Irgendwo in Ihrem Code, nachdem das Crawling abgeschlossen ist:
+
+
+
+    return visited, all_pdf_links
 
 
 @app.route('/start_crawl', methods=['POST'])
 @login_required
-def start_crawl():
+async def start_crawl():
     url = request.form['url']
-    depth = int(request.form.get('depth', 1))
-    links = []
+    level = int(request.form.get('depth', 1))
 
-    if not url_validator(url):
-        flash('Ungültige URL. Bitte geben Sie eine gültige URL ein.', 'danger')
-        return render_template('crawl.html', links=links)
+    visited, pdf_links = await crawl(url, level)
+    pdf_links_string = ','.join(pdf_links)
 
-    try:
-        links = crawl(url, depth)
-        flash(f'Die Webseite ist gültig und erreichbar! {len(links)} Links gefunden.', 'success')
-    except Exception as e:
-        flash(f'Ein Fehler ist aufgetreten: {str(e)}', 'danger')
+    new_crawl = CrawlData(user_id=current_user.id, url=url, pdf_links=pdf_links_string, crawl_date=datetime.utcnow())
+    db.session.add(new_crawl)
+    db.session.commit()
 
-    return render_template('crawl.html', links=links)
-
-
-
+    flash('Crawl erfolgreich gestartet. PDF-Links wurden gespeichert.')
+    return render_template('crawl.html', visited=visited, pdf_links=pdf_links)
 
 # Registrierung
 @app.route('/register', methods=['GET', 'POST'])

@@ -11,8 +11,7 @@ login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 mail = Mail(app)
 
-from app import routes, models
-# app/routes.py
+from app import routes  # Import routes at the end to avoid circular imports
 
-from app import app, db
-from app.models import User
+with app.app_context():
+    db.create_all()

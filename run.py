@@ -1,7 +1,10 @@
-from app import app
+
 from flask import Flask, current_app
 
-app = Flask(__name__)
+from app import app
+
+
+
 
 def hello():
    secret_key = current_app.config['SECRET_KEY']

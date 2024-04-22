@@ -1,0 +1,23 @@
+
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Profil von {{ current_user.username }}</h1>
+    <h2>Meine Suchprotokolle</h2>
+    <ul>
+        {% for record in crawl_records %}
+        <li>
+            <strong>Gesucht am:</strong> {{ record.crawl_date }}<br>
+            <strong>URL:</strong> {{ record.url }}<br>
+            <strong>PDF-Links:</strong>
+            <ul>
+                {% for link in record.pdf_links.split(',') %}
+                <li><a href="{{ link }}">{{ link }}</a></li>
+                {% endfor %}
+            </ul>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
