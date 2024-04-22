@@ -14,8 +14,8 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse
 import aiohttp
-
-
+import os;
+import asyncio
 from datetime import datetime
 
 
@@ -44,6 +44,9 @@ def crawl_page():
  #   return render_template('crawl.html')
 
 
+
+
+
 # Login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -68,29 +71,30 @@ def login():
 @app.route('/profile')
 @login_required
 def profile():
-    # Holen Sie die Crawling-Daten für den aktuellen Benutzer
-    crawl_records = CrawlData.query.filter_by(user_id=current_user.id).all()
+    # Fetch the crawl data for the current user, ordered by date descending
+    crawl_records = CrawlData.query.filter_by(user_id=current_user.id).order_by(CrawlData.crawl_date.desc()).all()
     return render_template('profile.html', crawl_records=crawl_records)
 
 
 async def fetch(session, url):
     try:
         async with session.get(url, timeout=10) as response:
+            if response.status == 404:
+                print(f"URL not found: {url}")
+                return None
             response.raise_for_status()
             content_type = response.headers.get('Content-Type', '').lower()
             if 'application/pdf' in content_type:
-                # If the content is a PDF, return the URL (do not attempt to decode content)
-                return url
+                filename = url.split('/')[-1]
+                return (url, filename)
             elif 'text/html' in content_type:
-                # If the content is HTML, return the decoded text
                 return await response.text()
-            else:
-                # If the content is neither PDF nor HTML, ignore it
-                return None
+            return None
     except Exception as e:
         print(f"Error fetching {url}: {e}")
         return None
-
+    
+    
 def is_valid(url):
     """Check if `url` is a valid URL."""
     parsed = urlparse(url)
@@ -107,51 +111,65 @@ def get_all_links(url, soup):
     return links
 
 def find_pdf_links(url, soup):
-    """Identify and return a list of PDF links from a BeautifulSoup object."""
     pdf_links = set()
     for link in soup.find_all('a', href=True):
         href = link['href']
         full_url = urljoin(url, href)
         if '.pdf' in full_url.lower():
-            pdf_links.add(full_url)
+            filename = full_url.split('/')[-1]
+            pdf_links.add((full_url, filename))
     return pdf_links
 
-async def crawl(url, level):
+async def download_pdf(session, url, user_id):
+    filename = url.split('/')[-1]
+    save_dir = f'downloads/{user_id}'
+    os.makedirs(save_dir, exist_ok=True)
+    save_path = os.path.join(save_dir, filename)
+    try:
+        async with session.get(url) as response:
+            if response.status == 200:
+                with open(save_path, 'wb') as f:
+                    f.write(await response.read())
+                return save_path
+            else:
+                print(f"Failed to download {url}: Status {response.status}")
+    except Exception as e:
+        print(f"Error downloading {url}: {e}")
+    return None
+
+# Modify the crawl function to download PDFs
+
+async def crawl(url, level, user_id, session):
     visited = set()
     to_visit = [(url, 1)]
     all_pdf_links = set()
     base_domain = urlparse(url).netloc
-
     async with aiohttp.ClientSession() as session:
         while to_visit:
-            current_url, _ = to_visit.pop(0)
+            current_url, current_depth = to_visit.pop(0)
             if current_url in visited:
                 continue
             visited.add(current_url)
-
             content = await fetch(session, current_url)
-            if content and current_url == content:
-                # If the content returned is a URL, it's a PDF link
-                all_pdf_links.add(content)
-            elif content:
-                # Process HTML content
+            if isinstance(content, tuple):
+                # Download the PDF and add to all_pdf_links if successful
+                save_path = await download_pdf(session, content[0], user_id)
+                if save_path:
+                    all_pdf_links.add((content[0], content[1], save_path))
+            elif isinstance(content, str):
                 soup = BeautifulSoup(content, 'html.parser')
                 pdf_links = find_pdf_links(current_url, soup)
-                all_pdf_links.update(pdf_links)
-
-                if level == 1:
-                    continue  # Stop if level 1
-
-                links = get_all_links(current_url, soup)
-                for link in links:
-                    link_domain = urlparse(link).netloc
-                    if (level == 2 and link_domain == base_domain) or level == 3:
-                        to_visit.append((link, 1))
-
-                        # Irgendwo in Ihrem Code, nachdem das Crawling abgeschlossen ist:
-
-
-
+                # Download each found PDF and update all_pdf_links
+                for link, filename in pdf_links:
+                    save_path = await download_pdf(session, link, user_id)
+                    if save_path:
+                        all_pdf_links.add((link, filename, save_path))
+                if current_depth < level:
+                    links = get_all_links(current_url, soup)
+                    for link in links:
+                        link_domain = urlparse(link).netloc
+                        if (level == 2 and link_domain == base_domain) or level == 3:
+                            to_visit.append((link, current_depth + 1))
     return visited, all_pdf_links
 
 
@@ -160,16 +178,27 @@ async def crawl(url, level):
 async def start_crawl():
     url = request.form['url']
     level = int(request.form.get('depth', 1))
+    user_id = current_user.id
 
-    visited, pdf_links = await crawl(url, level)
-    pdf_links_string = ','.join(pdf_links)
+    async with aiohttp.ClientSession() as session:
+        visited, pdf_links_tuples = await crawl(url, level, user_id, session)
 
-    new_crawl = CrawlData(user_id=current_user.id, url=url, pdf_links=pdf_links_string, crawl_date=datetime.utcnow())
+    # Extract URLs and filenames for the template
+    pdf_links_for_template = [{'url': link, 'filename': filename} for link, filename, _ in pdf_links_tuples]
+
+    # Convert tuples to strings for storing in the database
+    pdf_links_string = ','.join(f"{link}|{filename}" for link, filename, _ in pdf_links_tuples)
+    pdf_paths_string = ','.join(f"{path}" for _, _, path in pdf_links_tuples)
+
+    new_crawl = CrawlData(user_id=user_id, url=url, pdf_links=pdf_links_string, pdf_paths=pdf_paths_string, crawl_date=datetime.utcnow())
     db.session.add(new_crawl)
     db.session.commit()
 
     flash('Crawl erfolgreich gestartet. PDF-Links wurden gespeichert.')
-    return render_template('crawl.html', visited=visited, pdf_links=pdf_links)
+    return render_template('crawl.html', visited=visited, pdf_links=pdf_links_for_template)
+
+
+
 
 # Registrierung
 @app.route('/register', methods=['GET', 'POST'])
@@ -201,11 +230,21 @@ def register():
 
 
 
-# Logout
 @app.route('/logout')
 @login_required
 def logout():
+    try:
+        # Delete all crawl records associated with the user
+        CrawlData.query.filter_by(user_id=current_user.id).delete()
+        db.session.commit()
+    except Exception as e:
+        # Log the error, possibly handle it or notify someone
+        print(f"Error while deleting user data: {e}")
+
+    # Clear the session and logout the user
+    session.clear()
     logout_user()
+    flash('All your data has been cleared and you have been logged out.')
     return redirect(url_for('home'))
 
 # Passwort vergessen

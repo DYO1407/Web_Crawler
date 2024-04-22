@@ -41,8 +41,10 @@ class CrawlData(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     url = db.Column(db.String(512), nullable=False)
     crawl_date = db.Column(db.DateTime, default=datetime.utcnow)
-    pdf_links = db.Column(db.Text)  # Speichert PDF-Links als durch Kommata getrennten String
-
+    pdf_links = db.Column(db.Text)  # Stores PDF links as comma-separated strings
+    pdf_paths = db.Column(db.Text)  # Add this line to store the paths to PDF files
+    
+    
     def __repr__(self):
         return f'<CrawlData {self.url}>'
     
@@ -52,6 +54,9 @@ class PDFFile(db.Model):
     crawl_id = db.Column(db.Integer, db.ForeignKey('crawl_data.id'))
     file_path = db.Column(db.String(2048))
     accessed_date = db.Column(db.DateTime)
+
+
+
 
 
 

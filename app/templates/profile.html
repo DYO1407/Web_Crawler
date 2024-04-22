@@ -1,4 +1,3 @@
-
 {% extends "layout.html" %}
 
 {% block content %}
@@ -13,7 +12,8 @@
             <strong>PDF-Links:</strong>
             <ul>
                 {% for link in record.pdf_links.split(',') %}
-                <li><a href="{{ link }}">{{ link }}</a></li>
+                {% set url, name = link.split('|') %}
+                <li><a href="{{ url }}" target="_blank">{{ name }}</a></li>
                 {% endfor %}
             </ul>
         </li>

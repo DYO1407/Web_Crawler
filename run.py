@@ -6,6 +6,8 @@ from app import app
 
 
 
+
+
 def hello():
    secret_key = current_app.config['SECRET_KEY']
    return f'The secret key is: {secret_key}'

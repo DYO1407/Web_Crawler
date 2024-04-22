@@ -1,0 +1,2215 @@
+<!DOCTYPE html>
+
+<html  dir="ltr" lang="de" xml:lang="de">
+<head>
+    <title>Startseite | FHTW Moodle</title>
+    <link rel="shortcut icon" href="https://moodle.technikum-wien.at/theme/image.php/fhtw/theme/1713788901/favicon" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="moodle, Startseite | FHTW Moodle" />
+<link rel="stylesheet" type="text/css" href="https://moodle.technikum-wien.at/theme/yui_combo.php?rollup/3.18.1/yui-moodlesimple-min.css" /><script id="firstthemesheet" type="text/css">/** Required in order to fix style inclusion problems in IE with YUI **/</script><link rel="stylesheet" type="text/css" href="https://moodle.technikum-wien.at/theme/styles.php/fhtw/1713788901_1707853575/all" />
+<script>
+//<![CDATA[
+var M = {}; M.yui = {};
+M.pageloadstarttime = new Date();
+M.cfg = {"wwwroot":"https:\/\/moodle.technikum-wien.at","homeurl":{},"sesskey":"X8cEsVztp3","sessiontimeout":"14400","sessiontimeoutwarning":"1200","themerev":"1713788901","slasharguments":1,"theme":"fhtw","iconsystemmodule":"core\/icon_system_fontawesome","jsrev":"1713788901","admin":"admin","svgicons":true,"usertimezone":"Europa\/Berlin","language":"de","courseId":1,"courseContextId":2,"contextid":2,"contextInstanceId":1,"langrev":1713788901,"templaterev":"1713788901"};var yui1ConfigFn = function(me) {if(/-skin|reset|fonts|grids|base/.test(me.name)){me.type='css';me.path=me.path.replace(/\.js/,'.css');me.path=me.path.replace(/\/yui2-skin/,'/assets/skins/sam/yui2-skin')}};
+var yui2ConfigFn = function(me) {var parts=me.name.replace(/^moodle-/,'').split('-'),component=parts.shift(),module=parts[0],min='-min';if(/-(skin|core)$/.test(me.name)){parts.pop();me.type='css';min=''}
+if(module){var filename=parts.join('-');me.path=component+'/'+module+'/'+filename+min+'.'+me.type}else{me.path=component+'/'+component+'.'+me.type}};
+YUI_config = {"debug":false,"base":"https:\/\/moodle.technikum-wien.at\/lib\/yuilib\/3.18.1\/","comboBase":"https:\/\/moodle.technikum-wien.at\/theme\/yui_combo.php?","combine":true,"filter":null,"insertBefore":"firstthemesheet","groups":{"yui2":{"base":"https:\/\/moodle.technikum-wien.at\/lib\/yuilib\/2in3\/2.9.0\/build\/","comboBase":"https:\/\/moodle.technikum-wien.at\/theme\/yui_combo.php?","combine":true,"ext":false,"root":"2in3\/2.9.0\/build\/","patterns":{"yui2-":{"group":"yui2","configFn":yui1ConfigFn}}},"moodle":{"name":"moodle","base":"https:\/\/moodle.technikum-wien.at\/theme\/yui_combo.php?m\/1713788901\/","combine":true,"comboBase":"https:\/\/moodle.technikum-wien.at\/theme\/yui_combo.php?","ext":false,"root":"m\/1713788901\/","patterns":{"moodle-":{"group":"moodle","configFn":yui2ConfigFn}},"filter":null,"modules":{"moodle-core-blocks":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification"]},"moodle-core-dragdrop":{"requires":["base","node","io","dom","dd","event-key","event-focus","moodle-core-notification"]},"moodle-core-chooserdialogue":{"requires":["base","panel","moodle-core-notification"]},"moodle-core-actionmenu":{"requires":["base","event","node-event-simulate"]},"moodle-core-maintenancemodetimer":{"requires":["base","node"]},"moodle-core-notification":{"requires":["moodle-core-notification-dialogue","moodle-core-notification-alert","moodle-core-notification-confirm","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-core-notification-dialogue":{"requires":["base","node","panel","escape","event-key","dd-plugin","moodle-core-widget-focusafterclose","moodle-core-lockscroll"]},"moodle-core-notification-alert":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-confirm":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-exception":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-ajaxexception":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-handlebars":{"condition":{"trigger":"handlebars","when":"after"}},"moodle-core-lockscroll":{"requires":["plugin","base-build"]},"moodle-core-event":{"requires":["event-custom"]},"moodle-core-formchangechecker":{"requires":["base","event-focus","moodle-core-event"]},"moodle-core_availability-form":{"requires":["base","node","event","event-delegate","panel","moodle-core-notification-dialogue","json"]},"moodle-backup-backupselectall":{"requires":["node","event","node-event-simulate","anim"]},"moodle-course-dragdrop":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification","moodle-course-coursebase","moodle-course-util"]},"moodle-course-categoryexpander":{"requires":["node","event-key"]},"moodle-course-util":{"requires":["node"],"use":["moodle-course-util-base"],"submodules":{"moodle-course-util-base":{},"moodle-course-util-section":{"requires":["node","moodle-course-util-base"]},"moodle-course-util-cm":{"requires":["node","moodle-course-util-base"]}}},"moodle-course-management":{"requires":["base","node","io-base","moodle-core-notification-exception","json-parse","dd-constrain","dd-proxy","dd-drop","dd-delegate","node-event-delegate"]},"moodle-form-dateselector":{"requires":["base","node","overlay","calendar"]},"moodle-form-shortforms":{"requires":["node","base","selector-css3","moodle-core-event"]},"moodle-question-searchform":{"requires":["base","node"]},"moodle-question-preview":{"requires":["base","dom","event-delegate","event-key","core_question_engine"]},"moodle-question-chooser":{"requires":["moodle-core-chooserdialogue"]},"moodle-availability_completion-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_date-form":{"requires":["base","node","event","io","moodle-core_availability-form"]},"moodle-availability_grade-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_group-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_grouping-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_language-form":{"requires":["base","node","event","node-event-simulate","moodle-core_availability-form"]},"moodle-availability_profile-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_role-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-mod_assign-history":{"requires":["node","transition"]},"moodle-mod_attendance-groupfilter":{"requires":["base","node"]},"moodle-mod_checklist-linkselect":{"requires":["node","event-valuechange"]},"moodle-mod_customcert-rearrange":{"requires":["dd-delegate","dd-drag"]},"moodle-mod_offlinequiz-autosave":{"requires":["base","node","event","event-valuechange","node-event-delegate","io-form"]},"moodle-mod_offlinequiz-randomquestion":{"requires":["base","event","node","io","moodle-core-notification-dialogue"]},"moodle-mod_offlinequiz-dragdrop":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification","moodle-mod_offlinequiz-offlinequizbase","moodle-mod_offlinequiz-util-base","moodle-mod_offlinequiz-util-page","moodle-mod_offlinequiz-util-slot","moodle-course-util"]},"moodle-mod_offlinequiz-offlinequizbase":{"requires":["base","node"]},"moodle-mod_offlinequiz-util":{"requires":["node"],"use":["moodle-mod_offlinequiz-util-base"],"submodules":{"moodle-mod_offlinequiz-util-base":{},"moodle-mod_offlinequiz-util-slot":{"requires":["node","moodle-mod_offlinequiz-util-base"]},"moodle-mod_offlinequiz-util-page":{"requires":["node","moodle-mod_offlinequiz-util-base"]}}},"moodle-mod_offlinequiz-questionchooser":{"requires":["moodle-core-chooserdialogue","moodle-mod_offlinequiz-util","querystring-parse"]},"moodle-mod_offlinequiz-repaginate":{"requires":["base","event","node","io","moodle-core-notification-dialogue"]},"moodle-mod_offlinequiz-modform":{"requires":["base","node","event"]},"moodle-mod_offlinequiz-toolboxes":{"requires":["base","node","event","event-key","io","moodle-mod_offlinequiz-offlinequizbase","moodle-mod_offlinequiz-util-slot","moodle-core-notification-ajaxexception"]},"moodle-mod_quiz-autosave":{"requires":["base","node","event","event-valuechange","node-event-delegate","io-form"]},"moodle-mod_quiz-dragdrop":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification","moodle-mod_quiz-quizbase","moodle-mod_quiz-util-base","moodle-mod_quiz-util-page","moodle-mod_quiz-util-slot","moodle-course-util"]},"moodle-mod_quiz-util":{"requires":["node","moodle-core-actionmenu"],"use":["moodle-mod_quiz-util-base"],"submodules":{"moodle-mod_quiz-util-base":{},"moodle-mod_quiz-util-slot":{"requires":["node","moodle-mod_quiz-util-base"]},"moodle-mod_quiz-util-page":{"requires":["node","moodle-mod_quiz-util-base"]}}},"moodle-mod_quiz-questionchooser":{"requires":["moodle-core-chooserdialogue","moodle-mod_quiz-util","querystring-parse"]},"moodle-mod_quiz-modform":{"requires":["base","node","event"]},"moodle-mod_quiz-toolboxes":{"requires":["base","node","event","event-key","io","moodle-mod_quiz-quizbase","moodle-mod_quiz-util-slot","moodle-core-notification-ajaxexception"]},"moodle-mod_quiz-quizbase":{"requires":["base","node"]},"moodle-mod_scheduler-saveseen":{"requires":["base","node","event"]},"moodle-mod_scheduler-studentlist":{"requires":["base","node","event","io"]},"moodle-mod_scheduler-delselected":{"requires":["base","node","event"]},"moodle-message_airnotifier-toolboxes":{"requires":["base","node","io"]},"moodle-filter_glossary-autolinker":{"requires":["base","node","io-base","json-parse","event-delegate","overlay","moodle-core-event","moodle-core-notification-alert","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-editor_atto-rangy":{"requires":[]},"moodle-editor_atto-editor":{"requires":["node","transition","io","overlay","escape","event","event-simulate","event-custom","node-event-html5","node-event-simulate","yui-throttle","moodle-core-notification-dialogue","moodle-editor_atto-rangy","handlebars","timers","querystring-stringify"]},"moodle-editor_atto-plugin":{"requires":["node","base","escape","event","event-outside","handlebars","event-custom","timers","moodle-editor_atto-menu"]},"moodle-editor_atto-menu":{"requires":["moodle-core-notification-dialogue","node","event","event-custom"]},"moodle-report_eventlist-eventfilter":{"requires":["base","event","node","node-event-delegate","datatable","autocomplete","autocomplete-filters"]},"moodle-report_loglive-fetchlogs":{"requires":["base","event","node","io","node-event-delegate"]},"moodle-gradereport_history-userselector":{"requires":["escape","event-delegate","event-key","handlebars","io-base","json-parse","moodle-core-notification-dialogue"]},"moodle-qbank_editquestion-chooser":{"requires":["moodle-core-chooserdialogue"]},"moodle-tool_lp-dragdrop-reorder":{"requires":["moodle-core-dragdrop"]},"moodle-assignfeedback_editpdf-editor":{"requires":["base","event","node","io","graphics","json","event-move","event-resize","transition","querystring-stringify-simple","moodle-core-notification-dialog","moodle-core-notification-alert","moodle-core-notification-warning","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-atto_accessibilitychecker-button":{"requires":["color-base","moodle-editor_atto-plugin"]},"moodle-atto_accessibilityhelper-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_align-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_bold-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_bsgrid-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_charmap-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_chemistry-button":{"requires":["moodle-editor_atto-plugin","moodle-core-event","io","event-valuechange","tabview","array-extras"]},"moodle-atto_clear-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_collapse-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_count-button":{"requires":["io","json-parse","moodle-editor_atto-plugin"]},"moodle-atto_embedquestion-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_emojipicker-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_emoticon-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_equation-button":{"requires":["moodle-editor_atto-plugin","moodle-core-event","io","event-valuechange","tabview","array-extras"]},"moodle-atto_fullscreen-button":{"requires":["event-resize","moodle-editor_atto-plugin"]},"moodle-atto_generico-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_h5p-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_hr-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_html-codemirror":{"requires":["moodle-atto_html-codemirror-skin"]},"moodle-atto_html-button":{"requires":["promise","moodle-editor_atto-plugin","moodle-atto_html-beautify","moodle-atto_html-codemirror","event-valuechange"]},"moodle-atto_html-beautify":{},"moodle-atto_htmlplus-codemirror":{"requires":["moodle-atto_htmlplus-codemirror-skin"]},"moodle-atto_htmlplus-button":{"requires":["moodle-editor_atto-plugin","moodle-atto_htmlplus-beautify","moodle-atto_htmlplus-codemirror","event-valuechange"]},"moodle-atto_htmlplus-beautify":{},"moodle-atto_image-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_imagedragdrop-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_indent-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_italic-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_justify-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_link-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_managefiles-usedfiles":{"requires":["node","escape"]},"moodle-atto_managefiles-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_media-button":{"requires":["moodle-editor_atto-plugin","moodle-form-shortforms"]},"moodle-atto_noautolink-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_orderedlist-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_recordrtc-recording":{"requires":["moodle-atto_recordrtc-button"]},"moodle-atto_recordrtc-button":{"requires":["moodle-editor_atto-plugin","moodle-atto_recordrtc-recording"]},"moodle-atto_rtl-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_sketch-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_strike-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_subscript-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_superscript-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_table-button":{"requires":["moodle-editor_atto-plugin","moodle-editor_atto-menu","event","event-valuechange"]},"moodle-atto_templates4u-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_title-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_underline-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_undo-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_unorderedlist-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_wiris-button":{"requires":["moodle-editor_atto-plugin","get"]},"moodle-atto_wordimport-button":{"requires":["moodle-editor_atto-plugin"]}}},"gallery":{"name":"gallery","base":"https:\/\/moodle.technikum-wien.at\/lib\/yuilib\/gallery\/","combine":true,"comboBase":"https:\/\/moodle.technikum-wien.at\/theme\/yui_combo.php?","ext":false,"root":"gallery\/1713788901\/","patterns":{"gallery-":{"group":"gallery"}}}},"modules":{"core_filepicker":{"name":"core_filepicker","fullpath":"https:\/\/moodle.technikum-wien.at\/lib\/javascript.php\/1713788901\/repository\/filepicker.js","requires":["base","node","node-event-simulate","json","async-queue","io-base","io-upload-iframe","io-form","yui2-treeview","panel","cookie","datatable","datatable-sort","resize-plugin","dd-plugin","escape","moodle-core_filepicker","moodle-core-notification-dialogue"]},"core_comment":{"name":"core_comment","fullpath":"https:\/\/moodle.technikum-wien.at\/lib\/javascript.php\/1713788901\/comment\/comment.js","requires":["base","io-base","node","json","yui2-animation","overlay","escape"]}},"logInclude":[],"logExclude":[],"logLevel":null};
+M.yui.loader = {modules: {}};
+
+//]]>
+</script>
+<meta name="description" content=" FH Technikum Wien - Moodle " />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body  id="page-site-index" class="limitedwidth format-site course path-site dir-ltr lang-de yui-skin-sam yui3-skin-sam moodle-technikum-wien-at pagelayout-frontpage course-1 context-2 notloggedin theme ">
+<div class="toast-wrapper mx-auto py-0 fixed-top" role="status" aria-live="polite"></div>
+
+<div id="page-wrapper" class="d-print-block">
+
+    <div>
+    <a class="sr-only sr-only-focusable" href="#maincontent">Zum Hauptinhalt</a>
+</div><script src="https://moodle.technikum-wien.at/lib/javascript.php/1713788901/lib/polyfills/polyfill.js"></script>
+<script src="https://moodle.technikum-wien.at/theme/yui_combo.php?rollup/3.18.1/yui-moodlesimple-min.js"></script><script src="https://moodle.technikum-wien.at/lib/javascript.php/1713788901/lib/javascript-static.js"></script>
+<script>
+//<![CDATA[
+document.body.className += ' jsenabled';
+//]]>
+</script>
+
+
+
+    <nav class="navbar fixed-top navbar-dark bg-dark navbar-expand" aria-label="Site-Navigation">
+    
+        <button class="navbar-toggler aabtn d-block d-md-none px-1 my-1 border-0" data-toggler="drawers" data-action="toggle" data-target="theme_boost-drawers-primary">
+            <span class="navbar-toggler-icon"></span>
+            <span class="sr-only">Website-Übersicht</span>
+        </button>
+        
+        
+            <div class="primary-navigation">
+                <nav class="moremenu navigation">
+                    <ul id="moremenu-6626c9c866126-navbar-nav" role="menubar" class="nav more-nav navbar-nav">
+                                <li data-key="home" class="nav-item" role="none" data-forceintomoremenu="false">
+                                            <a role="menuitem" class="nav-link  "
+                                                href="https://moodle.technikum-wien.at/"
+                                                
+                                                
+                                                tabindex="-1"
+                                            >
+                                                Startseite
+                                            </a>
+                                </li>
+                                <li class="dropdown nav-item" role="none" data-forceintomoremenu="false">
+                                    <a class="dropdown-toggle nav-link active " id="drop-down-6626c9c865ace" role="menuitem" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false" href="#" aria-controls="drop-down-menu-6626c9c865ace"
+                                        
+                                        aria-current="true"
+                                        
+                                    >
+                                        Links
+                                    </a>
+                                    <div class="dropdown-menu" role="menu" id="drop-down-menu-6626c9c865ace" aria-labelledby="drop-down-6626c9c865ace">
+                                                    <a class="dropdown-item" role="menuitem" href="https://moodle.technikum-wien.at/mod/forum/view.php?id=74"  tabindex="-1"
+                                                        
+                                                    >
+                                                        FHTW Moodle News
+                                                    </a>
+                                                    <a class="dropdown-item" role="menuitem" href="https://moodle.technikum-wien.at/?redirect=0" aria-current="true" tabindex="-1"
+                                                        
+                                                    >
+                                                        Startseite
+                                                    </a>
+                                                <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" role="menuitem" href="https://cis.technikum-wien.at" aria-current="true" tabindex="-1"
+                                                        
+                                                    >
+                                                        CIS
+                                                    </a>
+                                                    <a class="dropdown-item" role="menuitem" href="https://cloud.technikum-wien.at/" aria-current="true" tabindex="-1"
+                                                        
+                                                    >
+                                                        FHTW Cloud
+                                                    </a>
+                                                    <a class="dropdown-item" role="menuitem" href="https://webmail.technikum-wien.at/" aria-current="true" tabindex="-1"
+                                                        
+                                                    >
+                                                        Webmail (SOGo)
+                                                    </a>
+                                                    <a class="dropdown-item" role="menuitem" href="http://www.technikum-wien.at/" aria-current="true" tabindex="-1"
+                                                        
+                                                    >
+                                                        FHTW Webseite
+                                                    </a>
+                                                    <a class="dropdown-item" role="menuitem" href="https://srs.technikum-wien.at/" aria-current="true" tabindex="-1"
+                                                        
+                                                    >
+                                                         SRS Particify
+                                                    </a>
+                                                <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" role="menuitem" href="https://moodle.technikum-wien.at/course/view.php?id=16415"  tabindex="-1"
+                                                        
+                                                    >
+                                                        FHTW-Infobase
+                                                    </a>
+                                                    <a class="dropdown-item" role="menuitem" href="https://moodle.technikum-wien.at/course/view.php?id=16619&amp;section=3"  tabindex="-1"
+                                                        
+                                                    >
+                                                        FHTW-Infobase Lehrende
+                                                    </a>
+                                                    <a class="dropdown-item" role="menuitem" href="https://moodle.technikum-wien.at/course/view.php?id=25"  tabindex="-1"
+                                                        
+                                                    >
+                                                         FH-Glossar
+                                                    </a>
+                                                    <a class="dropdown-item" role="menuitem" href="https://moodle.technikum-wien.at/course/view.php?id=13353"  tabindex="-1"
+                                                        
+                                                    >
+                                                         Study@FHTW
+                                                    </a>
+                                    </div>
+                                </li>
+                                <li class="dropdown nav-item" role="none" data-forceintomoremenu="false">
+                                    <a class="dropdown-toggle nav-link  " id="drop-down-6626c9c865f6b" role="menuitem" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false" href="#" aria-controls="drop-down-menu-6626c9c865f6b"
+                                        
+                                        
+                                        tabindex="-1"
+                                    >
+                                        Hilfe
+                                    </a>
+                                    <div class="dropdown-menu" role="menu" id="drop-down-menu-6626c9c865f6b" aria-labelledby="drop-down-6626c9c865f6b">
+                                                    <a class="dropdown-item" role="menuitem" href="mailto:moodle@technikum-wien.at"  tabindex="-1"
+                                                        
+                                                    >
+                                                        Ticket an Moodle Support
+                                                    </a>
+                                                <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" role="menuitem" href="https://moodle.technikum-wien.at/course/view.php?id=5682"  tabindex="-1"
+                                                        
+                                                    >
+                                                        Moodle Anleitungen/Beispielkurs
+                                                    </a>
+                                                    <a class="dropdown-item" role="menuitem" href="https://moodle.technikum-wien.at/pluginfile.php/2013277/mod_resource/content/1/Moodle-QuickStart-Guide.pdf"  tabindex="-1"
+                                                        
+                                                    >
+                                                        Moodle Handbuch
+                                                    </a>
+                                                    <a class="dropdown-item" role="menuitem" href="https://moodle.technikum-wien.at/mod/page/view.php?id=299409"  tabindex="-1"
+                                                        
+                                                    >
+                                                        Video-Tutorials
+                                                    </a>
+                                                <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" role="menuitem" href="https://docs.moodle.org"  tabindex="-1"
+                                                        
+                                                    >
+                                                        Moodle.org Docs
+                                                    </a>
+                                    </div>
+                                </li>
+                        <li role="none" class="nav-item dropdown dropdownmoremenu d-none" data-region="morebutton">
+                            <a class="dropdown-toggle nav-link " href="#" id="moremenu-dropdown-6626c9c866126" role="menuitem" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="-1">
+                                Mehr
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-left" data-region="moredropdown" aria-labelledby="moremenu-dropdown-6626c9c866126" role="menu">
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+    
+        <ul class="navbar-nav d-none d-md-flex my-1 px-1">
+            <!-- page_heading_menu -->
+            
+        </ul>
+    
+        <div id="usernavigation" class="navbar-nav ml-auto">
+                <div id="searchinput-navbar-6626c9c869b5e6626c9c8662465" class="simplesearchform">
+    <div class="collapse" id="searchform-navbar">
+        <form autocomplete="off" action="https://moodle.technikum-wien.at/search/index.php" method="get" accept-charset="utf-8" class="mform form-inline searchform-navbar">
+                <input type="hidden" name="context" value="2">
+            <div class="input-group">
+                <label for="searchinput-6626c9c869b5e6626c9c8662465">
+                    <span class="sr-only">Suchen</span>
+                </label>
+                    <input type="text"
+                       id="searchinput-6626c9c869b5e6626c9c8662465"
+                       class="form-control withclear"
+                       placeholder="Suchen"
+                       aria-label="Suchen"
+                       name="q"
+                       data-region="input"
+                       autocomplete="off"
+                    >
+                    <a class="btn btn-close"
+                        data-action="closesearch"
+                        data-toggle="collapse"
+                        href="#searchform-navbar"
+                        role="button"
+                    >
+                        <i class="icon fa fa-times fa-fw " aria-hidden="true"  ></i>
+                        <span class="sr-only">Schließen</span>
+                    </a>
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-submit" data-action="submit">
+                        <i class="icon fa fa-search fa-fw " aria-hidden="true"  ></i>
+                        <span class="sr-only">Suchen</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <a
+        class="btn btn-open rounded-0 nav-link"
+        data-toggle="collapse"
+        data-action="opensearch"
+        href="#searchform-navbar"
+        role="button"
+        aria-expanded="false"
+        aria-controls="searchform-navbar"
+        title="Sucheingabe umschalten"
+    >
+        <i class="icon fa fa-search fa-fw " aria-hidden="true"  ></i>
+        <span class="sr-only">Sucheingabe umschalten</span>
+    </a>
+</div>
+                <div class="divider border-left h-75 align-self-center mx-1"></div>
+                <div class="langmenu">
+                    <div class="dropdown show">
+                        <a href="#" role="button" id="lang-menu-toggle" data-toggle="dropdown" aria-label="Sprache" aria-haspopup="true" aria-controls="lang-action-menu" class="btn dropdown-toggle">
+                            <i class="icon fa fa-language fa-fw mr-1" aria-hidden="true"></i>
+                            <span class="langbutton">
+                                Deutsch ‎(de)‎
+                            </span>
+                            <b class="caret"></b>
+                        </a>
+                        <div role="menu" aria-labelledby="lang-menu-toggle" id="lang-action-menu" class="dropdown-menu dropdown-menu-right">
+                                    <a href="#" class="dropdown-item pl-5" role="menuitem" aria-current="true"
+                                            >
+                                        Deutsch ‎(de)‎
+                                    </a>
+                                    <a href="https://moodle.technikum-wien.at/?redirect=0&amp;lang=en" class="dropdown-item pl-5" role="menuitem" 
+                                            lang="en" >
+                                        English ‎(en)‎
+                                    </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="divider border-left h-75 align-self-center mx-1"></div>
+            
+            <div class="d-flex align-items-stretch usermenu-container" data-region="usermenu">
+                    <div class="usermenu">
+                            <span class="login pl-2">
+                                    <a href="https://moodle.technikum-wien.at/login/index.php">Login</a>
+                            </span>
+                    </div>
+            </div>
+            
+        </div>
+    </nav>
+    
+
+<div  class="drawer drawer-left drawer-primary d-print-none not-initialized" data-region="fixed-drawer" id="theme_boost-drawers-primary" data-preference="" data-state="show-drawer-primary" data-forceopen="0" data-close-on-resize="1">
+    <div class="drawerheader">
+        <button
+            class="btn drawertoggle icon-no-margin hidden"
+            data-toggler="drawers"
+            data-action="closedrawer"
+            data-target="theme_boost-drawers-primary"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="Leiste schließen"
+        >
+            <i class="icon fa fa-times fa-fw " aria-hidden="true"  ></i>
+        </button>
+        <div class="drawerheadercontent hidden">
+            
+        </div>
+    </div>
+    <div class="drawercontent drag-container" data-usertour="scroller">
+                <div class="list-group">
+                <a href="https://moodle.technikum-wien.at/" class="list-group-item list-group-item-action  " >
+                    Startseite
+                </a>
+                <a id="drop-down-1" href="#" class="list-group-item list-group-item-action icons-collapse-expand d-flex" data-toggle="collapse" data-target="#drop-down-menu-1" aria-expanded="true" aria-controls="drop-down-menu-1">
+                    Links
+                    <span class="ml-auto expanded-icon icon-no-margin mx-2">
+                        <i class="icon fa fa-caret-down fa-fw " aria-hidden="true"  ></i>
+                        <span class="sr-only">
+                            Einklappen
+                        </span>
+                    </span>
+                    <span class="ml-auto collapsed-icon icon-no-margin mx-2">
+                        <i class="icon fa fa-caret-right fa-fw " aria-hidden="true"  ></i>
+                        <span class="sr-only">
+                            Ausklappen
+                        </span>
+                    </span>
+                </a>
+                <div class="collapse show list-group-item p-0 border-0" role="menu" id="drop-down-menu-1" aria-labelledby="drop-down-1">
+                             <a href="https://moodle.technikum-wien.at/mod/forum/view.php?id=74" class="pl-5 bg-light list-group-item list-group-item-action">FHTW Moodle News</a>
+                             <a href="https://moodle.technikum-wien.at/?redirect=0" class="pl-5 active list-group-item list-group-item-action">Startseite</a>
+                             <a href="https://cis.technikum-wien.at" class="pl-5 active list-group-item list-group-item-action">CIS</a>
+                             <a href="https://cloud.technikum-wien.at/" class="pl-5 active list-group-item list-group-item-action">FHTW Cloud</a>
+                             <a href="https://webmail.technikum-wien.at/" class="pl-5 active list-group-item list-group-item-action">Webmail (SOGo)</a>
+                             <a href="http://www.technikum-wien.at/" class="pl-5 active list-group-item list-group-item-action">FHTW Webseite</a>
+                             <a href="https://srs.technikum-wien.at/" class="pl-5 active list-group-item list-group-item-action"> SRS Particify</a>
+                             <a href="https://moodle.technikum-wien.at/course/view.php?id=16415" class="pl-5 bg-light list-group-item list-group-item-action">FHTW-Infobase</a>
+                             <a href="https://moodle.technikum-wien.at/course/view.php?id=16619&amp;section=3" class="pl-5 bg-light list-group-item list-group-item-action">FHTW-Infobase Lehrende</a>
+                             <a href="https://moodle.technikum-wien.at/course/view.php?id=25" class="pl-5 bg-light list-group-item list-group-item-action"> FH-Glossar</a>
+                             <a href="https://moodle.technikum-wien.at/course/view.php?id=13353" class="pl-5 bg-light list-group-item list-group-item-action"> Study@FHTW</a>
+                </div>
+                <a id="drop-down-15" href="#" class="list-group-item list-group-item-action icons-collapse-expand collapsed d-flex" data-toggle="collapse" data-target="#drop-down-menu-15" aria-expanded="false" aria-controls="drop-down-menu-15">
+                    Hilfe
+                    <span class="ml-auto expanded-icon icon-no-margin mx-2">
+                        <i class="icon fa fa-caret-down fa-fw " aria-hidden="true"  ></i>
+                        <span class="sr-only">
+                            Einklappen
+                        </span>
+                    </span>
+                    <span class="ml-auto collapsed-icon icon-no-margin mx-2">
+                        <i class="icon fa fa-caret-right fa-fw " aria-hidden="true"  ></i>
+                        <span class="sr-only">
+                            Ausklappen
+                        </span>
+                    </span>
+                </a>
+                <div class="collapse list-group-item p-0 border-0" role="menu" id="drop-down-menu-15" aria-labelledby="drop-down-15">
+                             <a href="mailto:moodle@technikum-wien.at" class="pl-5 bg-light list-group-item list-group-item-action">Ticket an Moodle Support</a>
+                             <a href="https://moodle.technikum-wien.at/course/view.php?id=5682" class="pl-5 bg-light list-group-item list-group-item-action">Moodle Anleitungen/Beispielkurs</a>
+                             <a href="https://moodle.technikum-wien.at/pluginfile.php/2013277/mod_resource/content/1/Moodle-QuickStart-Guide.pdf" class="pl-5 bg-light list-group-item list-group-item-action">Moodle Handbuch</a>
+                             <a href="https://moodle.technikum-wien.at/mod/page/view.php?id=299409" class="pl-5 bg-light list-group-item list-group-item-action">Video-Tutorials</a>
+                             <a href="https://docs.moodle.org" class="pl-5 bg-light list-group-item list-group-item-action">Moodle.org Docs</a>
+                </div>
+        </div>
+
+    </div>
+</div>
+
+    <div id="page" class="container-fluid d-print-block">
+        <header id="page-header" class="header-maxwidth d-print-none">
+    <div class="w-100">
+        <div class="d-flex flex-wrap">
+            <div class="ml-auto d-flex">
+                
+            </div>
+            <div id="course-header">
+                
+            </div>
+        </div>
+        <div class="d-flex align-items-center">
+            <div class="header-actions-container ml-auto" data-region="header-actions-container">
+            </div>
+        </div>
+    </div>
+</header>
+
+        <div id="page-content" class="row pb-3 d-print-block">
+            <div id="region-main-box" class="col-12">
+                <section id="region-main"  aria-label="Inhalt">
+
+
+                    <div id="logo" class="d-block"></div>
+                    <div id="banner" class="d-block fhtw-banner-Moodle_Titelbilder_0000s_0040_BME_FHT_28042021_0144_BW-jpg"><!-- intentionally empty --><div class="pull-right mt-4 mr-2"></div></div>
+                    <div class="flex-break"></div>
+                    <div id="login" class="p-2 px-5 bg-primary"><div class="theme_fhtw-loginform p-3 text-white">
+    <h1 class="text-white">Moodle Login</h1>
+    <form class="" action="https://moodle.technikum-wien.at/login/index.php" method="post" id="login">
+        <input id="anchor" type="hidden" name="anchor" value="">
+        <script>document.getElementById('anchor').value = location.hash;</script>
+        <input type="hidden" name="logintoken" value="MeyUDACC0VKPvoCZazMrmLul9HfVEegV">
+        <div class="form-group">
+            <label for="username" class="sr-only">
+                    Anmeldename
+            </label>
+            <input type="text" name="username" id="username"
+                   tabindex="1"
+                   autofocus
+                   class="form-control"
+                   value=""
+                   placeholder="Anmeldename"
+                   autocomplete="username">
+        </div>
+        <div class="form-group">
+            <label for="password" class="sr-only">Kennwort</label>
+            <input type="password" name="password" id="password" value=""
+                   tabindex="2"
+                   class="form-control"
+                   placeholder="Kennwort"
+                   autocomplete="current-password">
+        </div>
+        <div class="rememberpass mt-3">
+            <input type="checkbox" name="rememberusername" id="rememberusername" value="1"  />
+            <label for="rememberusername">Anmeldenamen merken</label>
+        </div>
+
+        <button type="submit" class="btn btn-success text-white btn-block mt-3" id="loginbtn">Login</button>
+    </form>
+
+    <div class="forgetpass mt-3">
+        <p><a href="https://moodle.technikum-wien.at/login/forgot_password.php" class="text-white">Kennwort vergessen?</a></p>
+    </div>
+
+    <div class="mt-3">
+        Cookies müssen aktiviert sein!
+        
+    </div>
+
+</div>
+</div>
+
+
+                    <span class="notifications" id="user-notifications"></span>
+                    <div role="main"><span id="maincontent"></span><div class="theme_fhtw-main container-fluid">
+    <div class="row">
+        <div id="news" class="col-12 col-xl-7 p-2 bg-white"><div class="theme_fhtw-news m-2 p-3">
+    <h2 class="text-primary">FHTW Moodle News</h2>
+    <a class="skip-block skip" href="#skipsitenews">fhtw moodle news überspringen</a><div id="discussion-list-6626c9c8709516626c9c8662466" data-contextid="270" data-cmid="74" data-name="FHTW Moodle News" data-group="" data-grading-component="" data-grading-component-subtype="" data-gradable-itemtype="forum" data-initialuserid="31753" >
+
+
+    
+
+
+    <div class="py-3">
+    </div>
+
+           <article
+    id="p229463"
+    class="forum-post-container mb-2"
+    data-post-id="229463"
+    data-region="post"
+    data-target="229463-target"
+    tabindex="0"
+    aria-labelledby="post-header-229463-6626c9c8709516626c9c8662466"
+    aria-describedby="post-content-229463"
+>
+    <div
+        class="d-flex border p-2 mb-2 forumpost focus-target  "
+        aria-label='Moodle Plugin KI-Tutor Informationsveranstaltung von Bogosavljevic Nikola'
+        data-post-id="229463" data-content="forum-post"
+    >
+        
+
+        <div class="d-flex flex-column w-100"  data-region-content="forum-post-core">
+            <header id="post-header-229463-6626c9c8709516626c9c8662466" class="mb-2 header row d-flex">
+                        <div class="mr-2" style="width: 45px;">
+                                <img
+                                    class="rounded-circle w-100"
+                                    src="https://moodle.technikum-wien.at/pluginfile.php/1653844/user/icon/fhtw/f1?rev=27523119"
+                                    alt="Nutzerbild von Bogosavljevic Nikola"
+                                    aria-hidden="true"
+                                    title="Nutzerbild von Bogosavljevic Nikola"
+                                >
+                        </div>
+                <div class="d-flex flex-column">
+                        <h3 class="h6 font-weight-bold mb-0" data-region-content="forum-post-core-subject" data-reply-subject="Re: Moodle Plugin KI-Tutor Informationsveranstaltung" >Moodle Plugin KI-Tutor Informationsveranstaltung</h3>
+                        <div class="mb-3" tabindex="-1">
+                            von <a href="https://moodle.technikum-wien.at/user/view.php?id=31753&course=1">Bogosavljevic Nikola</a> - <time datetime="2024-04-18T13:05:49+02:00">Donnerstag, 18. April 2024, 13:05</time>
+                        </div>
+                </div>
+            </header>
+
+            <div class="d-flex body-content-container">
+                        <div class="mr-2 author-groups-container" style="width: 45px; flex-shrink: 0">
+                        </div>
+
+                <div class="no-overflow w-100 content-alignment-container">
+                    <div id="post-content-229463" class="post-content-container">
+                        <p dir="ltr" style="text-align:left;"></p><p><span style="font-size:0.9375rem;">Liebe Kolleg*innen,</span><br /></p><p>Ab Mai bieten wir in einer <strong>Testphase </strong>ein neues, innovatives <strong>Moodle-Plugin</strong> an, welches die Leistungsfähigkeit von OpenAI ChatGPT- 4 nutzt und als <strong>KI-TUTOR/BOT</strong> in unseren Moodle-Kursen eingesetzt werden kann. Als Lehrende haben Sie in Zukunft die Möglichkeit, einen Chat oder sog. Assistant direkt in Ihre Lehrveranstaltung zu integrieren und einen Report über das Frageverhalten ihrer Studierenden zu generieren, um die Inhalte ihrer Lehrveranstaltung kontinuierlich zu verbessern.</p><p><strong>Hauptmerkmale des Plugins: </strong></p><ul><li><p>OpenAI-Integration: Nutzung des ChatGPT 4.0 Modells</p></li><li><p>Modi Auswahl: Interaktiver Chat (oder in Zukunft zielorientierter Assistant-Modus)</p></li><li><p>Completion Prompt: Einstellung von Themenbereichen, die der Tutor abdecken darf</p></li><li><p>Vertrauenswürdige Quellen: Sicherstellung der Relevanz und Genauigkeit der Informationen</p></li><li><p>Log Report: Einsicht in die Fragen der Studierenden</p></li></ul><p> </p><p>Wir laden Sie herzlich zu unserer Informationsveranstaltung über das neue "KI-Tutor/Bot" Plugin in Moodle ein. In dieser Session zeigen wir Ihnen, wie Sie das Tool einsetzen, um Ihre Studierenden durch den Einsatz künstlicher Intelligenz im Eigenstudium zu unterstützen. </p><p><strong>Termine:</strong></p><p>Vor Ort: 6. Mai, 10:00 Uhr - 11:00 Uhr  im kleinen Festsaal (F0.02)</p><p>Online: 8. Mai, 12:00 Uhr - 13:00 Uhr  via Zoom (Link wird bei der Anmeldung bekanntgegeben)</p><p>Wir ersuchen um eine <a href="https://moodle.technikum-wien.at/mod/organizer/view.php?id=1633380&amp;mode=2" title="Anmeldung KI"><u><strong>Anmeldung</strong></u></a> bis Dienstag, 30. April 2024.</p><p> </p><p>Was erwartet Sie?</p><p>Diese Veranstaltungen sind dazu gedacht, Ihnen das Plugin vorzustellen und Sie mit den Funktionen vertraut zu machen, damit Sie es ab Mai 2024 in Ihren Kursen nutzen können. Das TLC Team gemeinsam mit Lars Mehnen führen live vor, wie Sie dieses Tool in Ihren Moodle-Kursen einsetzen können, um die Interaktion mit dem Kursinhalt zu fördern und das Lernen zu personalisieren.</p><p>Für weitere Fragen stehen wir Ihnen unter moodle@technikum-wie.at gerne zur Verfügung. Wir freuen uns auf Ihr Kommen und das gemeinsame Erkunden des "KI-Tutor/Bot" Plugins.</p><p>Mit freundlichen Grüßen<br /><strong>das TLC-Team</strong></p><br /><p></p>
+                    </div>
+
+
+
+                        
+
+
+                            <div class="d-flex flex-wrap">
+                                    <div
+                                        class="post-actions d-flex align-self-end justify-content-end flex-wrap ml-auto"
+                                        data-region="post-actions-container"
+                                        role="menubar"
+                                        aria-label='Moodle Plugin KI-Tutor Informationsveranstaltung von Bogosavljevic Nikola'
+                                        aria-controls="p229463"
+                                    >
+                                                <a
+                                                    data-region="post-action"
+                                                    href="https://moodle.technikum-wien.at/mod/forum/discuss.php?d=124162#p229463"
+                                                    class="btn btn-link"
+                                                    title="Dauerhafter Link zu diesem Beitrag"
+                                                    aria-label="Dauerhafter Link zu diesem Beitrag"
+                                                    role="menuitem"
+                                                >
+                                                    Dauerlink
+                                                </a>
+                                    </div>
+                            </div>
+
+                                           <div class="link text-right">
+                       <a href="https://moodle.technikum-wien.at/mod/forum/discuss.php?d=124162"
+                          aria-label="Diskutieren Sie das Thema: Moodle Plugin KI-Tutor Informationsveranstaltung">
+                           Thema diskutieren
+                       </a>&nbsp;(0 Antworten)
+                   </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div data-region="replies-container">
+        </div>
+</article>
+           <article
+    id="p229439"
+    class="forum-post-container mb-2"
+    data-post-id="229439"
+    data-region="post"
+    data-target="229439-target"
+    tabindex="0"
+    aria-labelledby="post-header-229439-6626c9c8709516626c9c8662466"
+    aria-describedby="post-content-229439"
+>
+    <div
+        class="d-flex border p-2 mb-2 forumpost focus-target  "
+        aria-label='Instahelp von Perkovic Patrick'
+        data-post-id="229439" data-content="forum-post"
+    >
+        
+
+        <div class="d-flex flex-column w-100"  data-region-content="forum-post-core">
+            <header id="post-header-229439-6626c9c8709516626c9c8662466" class="mb-2 header row d-flex">
+                        <div class="mr-2" style="width: 45px;">
+                                <img
+                                    class="rounded-circle w-100"
+                                    src="https://moodle.technikum-wien.at/pluginfile.php/2057494/user/icon/fhtw/f1?rev=33761016"
+                                    alt="Nutzerbild von Perkovic Patrick"
+                                    aria-hidden="true"
+                                    title="Nutzerbild von Perkovic Patrick"
+                                >
+                        </div>
+                <div class="d-flex flex-column">
+                        <h3 class="h6 font-weight-bold mb-0" data-region-content="forum-post-core-subject" data-reply-subject="Re: Instahelp" >Instahelp</h3>
+                        <div class="mb-3" tabindex="-1">
+                            von <a href="https://moodle.technikum-wien.at/user/view.php?id=35567&course=1">Perkovic Patrick</a> - <time datetime="2024-04-18T10:30:00+02:00">Donnerstag, 18. April 2024, 10:30</time>
+                        </div>
+                </div>
+            </header>
+
+            <div class="d-flex body-content-container">
+                        <div class="mr-2 author-groups-container" style="width: 45px; flex-shrink: 0">
+                        </div>
+
+                <div class="no-overflow w-100 content-alignment-container">
+                    <div id="post-content-229439" class="post-content-container">
+                        <p dir="ltr" style="text-align:left;"></p><p><span lang="de" xml:lang="de">Liebe Kolleg*innen,<br />
+<br />
+</span></p>
+
+<p><span lang="de" xml:lang="de">wir freuen uns, unser neues Mental Health
+Angebot für Studierende vorstellen zu dürfen: die FH Technikum Wien bietet den
+Studierenden ab sofort mit<b> </b><a href="https://instahelp.me/de/"><b>Instahelp</b></a><b>
+</b>die Möglichkeit für eine kostenlose, <b>individuelle </b>und <b>professionelle psychologische Onlineberatung </b>für
+berufliche und private Themen. Dieses Angebot ist <b>anonym</b>,
+zeitlich <b>flexibel </b>und kann über Smartphone oder Computer
+genutzt werden. Nach einem Selbsteinschätzungstest werden die Studierenden,
+abhängig vom Thema, mit den passenden Expert*innen (ausgebildeten
+Psycholog*innen) vernetzt. <b>Pro Student*in gibt es max. 5 kostenlose Online
+Beratungen. </b></span></p>
+
+<p><span lang="de" xml:lang="de">Bitte machen Sie Ihre Studierenden auf dieses
+Angebot aufmerksam. Weitere Infos und Zugang zum kostenlosen Angebot erhalten
+die Studierenden unter <a href="https://moodle.technikum-wien.at/course/view.php?id=13353">Study@</a> im
+Moodle Kurs <a href="https://moodle.technikum-wien.at/course/view.php?id=10111&amp;lang=en">Psychosoziale
+Beratung</a>.</span></p><p><span lang="de" xml:lang="de"><br /></span></p><p><span lang="de" xml:lang="de">Mit besten Grüßen<br /><strong>das TLC-Team</strong></span></p><br /><p></p>
+                    </div>
+
+
+
+                        
+
+
+                            <div class="d-flex flex-wrap">
+                                    <div
+                                        class="post-actions d-flex align-self-end justify-content-end flex-wrap ml-auto"
+                                        data-region="post-actions-container"
+                                        role="menubar"
+                                        aria-label='Instahelp von Perkovic Patrick'
+                                        aria-controls="p229439"
+                                    >
+                                                <a
+                                                    data-region="post-action"
+                                                    href="https://moodle.technikum-wien.at/mod/forum/discuss.php?d=124143#p229439"
+                                                    class="btn btn-link"
+                                                    title="Dauerhafter Link zu diesem Beitrag"
+                                                    aria-label="Dauerhafter Link zu diesem Beitrag"
+                                                    role="menuitem"
+                                                >
+                                                    Dauerlink
+                                                </a>
+                                    </div>
+                            </div>
+
+                                           <div class="link text-right">
+                       <a href="https://moodle.technikum-wien.at/mod/forum/discuss.php?d=124143"
+                          aria-label="Diskutieren Sie das Thema: Instahelp">
+                           Thema diskutieren
+                       </a>&nbsp;(0 Antworten)
+                   </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div data-region="replies-container">
+        </div>
+</article>
+           <article
+    id="p228724"
+    class="forum-post-container mb-2"
+    data-post-id="228724"
+    data-region="post"
+    data-target="228724-target"
+    tabindex="0"
+    aria-labelledby="post-header-228724-6626c9c8709516626c9c8662466"
+    aria-describedby="post-content-228724"
+>
+    <div
+        class="d-flex border p-2 mb-2 forumpost focus-target  "
+        aria-label='Moodle-Coffee Sessions im April von Kovacevic Selma'
+        data-post-id="228724" data-content="forum-post"
+    >
+        
+
+        <div class="d-flex flex-column w-100"  data-region-content="forum-post-core">
+            <header id="post-header-228724-6626c9c8709516626c9c8662466" class="mb-2 header row d-flex">
+                        <div class="mr-2" style="width: 45px;">
+                                <img
+                                    class="rounded-circle w-100"
+                                    src="https://moodle.technikum-wien.at/pluginfile.php/850044/user/icon/fhtw/f1?rev=14862763"
+                                    alt="Nutzerbild von Kovacevic Selma"
+                                    aria-hidden="true"
+                                    title="Nutzerbild von Kovacevic Selma"
+                                >
+                        </div>
+                <div class="d-flex flex-column">
+                        <h3 class="h6 font-weight-bold mb-0" data-region-content="forum-post-core-subject" data-reply-subject="Re: Moodle-Coffee Sessions im April" >Moodle-Coffee Sessions im April</h3>
+                        <div class="mb-3" tabindex="-1">
+                            von <a href="https://moodle.technikum-wien.at/user/view.php?id=24140&course=1">Kovacevic Selma</a> - <time datetime="2024-04-03T15:28:07+02:00">Mittwoch, 3. April 2024, 15:28</time>
+                        </div>
+                </div>
+            </header>
+
+            <div class="d-flex body-content-container">
+                        <div class="mr-2 author-groups-container" style="width: 45px; flex-shrink: 0">
+                        </div>
+
+                <div class="no-overflow w-100 content-alignment-container">
+                    <div id="post-content-228724" class="post-content-container">
+                        <p dir="ltr" style="text-align:left;"><span style="font-size:0.9375rem;">Liebe Lehrende,</span><br /></p><p dir="ltr" style="text-align:left;">der April hält für Sie jede Woche spannende <strong>Coffee Sessions</strong> zu den unterschiedlichsten Themen rund um Moodle bereit. </p><p dir="ltr" style="text-align:left;">Ob <a href="https://moodle.technikum-wien.at/mod/organizer/view.php?id=1363526&amp;mode=2"><strong>Bewertungseinstellungen</strong></a>, <a href="https://moodle.technikum-wien.at/mod/organizer/view.php?id=1363534&amp;mode=2"><strong>einfache Testerstellung</strong></a>, <a href="https://moodle.technikum-wien.at/mod/organizer/view.php?id=1363502&amp;mode=2"><strong>fortschrittliche Themen in Moodle</strong></a>, <a href="https://moodle.technikum-wien.at/mod/organizer/view.php?id=1363530&amp;mode=2"><strong>kollaboratives Arbeiten fördern</strong></a>, <strong><a href="https://moodle.technikum-wien.at/mod/organizer/view.php?id=1363532&amp;mode=2">Kursdesign</a> </strong>etc. - unsere Coffee Sessions bieten etwas für jeden!</p><p dir="ltr" style="text-align:left;">Melden Sie sich rechtzeitig an und erweitern Sie Ihre Moodle Kenntnisse. <br /><br /></p><p dir="ltr" style="text-align:left;">Mit besten Grüßen<br /><strong>das TLC-Team</strong></p>
+                    </div>
+
+
+
+                        
+
+
+                            <div class="d-flex flex-wrap">
+                                    <div
+                                        class="post-actions d-flex align-self-end justify-content-end flex-wrap ml-auto"
+                                        data-region="post-actions-container"
+                                        role="menubar"
+                                        aria-label='Moodle-Coffee Sessions im April von Kovacevic Selma'
+                                        aria-controls="p228724"
+                                    >
+                                                <a
+                                                    data-region="post-action"
+                                                    href="https://moodle.technikum-wien.at/mod/forum/discuss.php?d=123619#p228724"
+                                                    class="btn btn-link"
+                                                    title="Dauerhafter Link zu diesem Beitrag"
+                                                    aria-label="Dauerhafter Link zu diesem Beitrag"
+                                                    role="menuitem"
+                                                >
+                                                    Dauerlink
+                                                </a>
+                                    </div>
+                            </div>
+
+                                           <div class="link text-right">
+                       <a href="https://moodle.technikum-wien.at/mod/forum/discuss.php?d=123619"
+                          aria-label="Diskutieren Sie das Thema: Moodle-Coffee Sessions im April">
+                           Thema diskutieren
+                       </a>&nbsp;(0 Antworten)
+                   </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div data-region="replies-container">
+        </div>
+</article>
+           <article
+    id="p228194"
+    class="forum-post-container mb-2"
+    data-post-id="228194"
+    data-region="post"
+    data-target="228194-target"
+    tabindex="0"
+    aria-labelledby="post-header-228194-6626c9c8709516626c9c8662466"
+    aria-describedby="post-content-228194"
+>
+    <div
+        class="d-flex border p-2 mb-2 forumpost focus-target  "
+        aria-label='Osterferien &amp;amp; Erreichbarkeit von Bogosavljevic Nikola'
+        data-post-id="228194" data-content="forum-post"
+    >
+        
+
+        <div class="d-flex flex-column w-100"  data-region-content="forum-post-core">
+            <header id="post-header-228194-6626c9c8709516626c9c8662466" class="mb-2 header row d-flex">
+                        <div class="mr-2" style="width: 45px;">
+                                <img
+                                    class="rounded-circle w-100"
+                                    src="https://moodle.technikum-wien.at/pluginfile.php/1653844/user/icon/fhtw/f1?rev=27523119"
+                                    alt="Nutzerbild von Bogosavljevic Nikola"
+                                    aria-hidden="true"
+                                    title="Nutzerbild von Bogosavljevic Nikola"
+                                >
+                        </div>
+                <div class="d-flex flex-column">
+                        <h3 class="h6 font-weight-bold mb-0" data-region-content="forum-post-core-subject" data-reply-subject="Re: Osterferien &amp;amp; Erreichbarkeit" >Osterferien &amp; Erreichbarkeit</h3>
+                        <div class="mb-3" tabindex="-1">
+                            von <a href="https://moodle.technikum-wien.at/user/view.php?id=31753&course=1">Bogosavljevic Nikola</a> - <time datetime="2024-03-20T09:38:02+01:00">Mittwoch, 20. März 2024, 09:38</time>
+                        </div>
+                </div>
+            </header>
+
+            <div class="d-flex body-content-container">
+                        <div class="mr-2 author-groups-container" style="width: 45px; flex-shrink: 0">
+                        </div>
+
+                <div class="no-overflow w-100 content-alignment-container">
+                    <div id="post-content-228194" class="post-content-container">
+                        <p dir="ltr">Liebe Lehrende,<br /><span style="font-size:0.9375rem;">Liebe Studierende,</span></p><p dir="ltr"><br /></p><p dir="ltr">das Büro des Moodle-Supports ist während der <strong>Osterferien vom 25.3.2024 - 1.4.2024 geschlossen</strong>. Sie können uns dennoch per E-Mail an <a href="https://mail.google.com/mail/u/0/?fs=1&amp;tf=cm&amp;source=mailto&amp;to=moodle@technikum-wien.at" target="_blank" rel="noreferrer noopener"><strong>moodle@technikum-wien.at</strong></a> oder <strong>telefonisch </strong>erreichen. Wir sind bemüht Ihre Anfragen so rasch wie möglich zu bearbeiten. </p><p dir="ltr"><br /></p><p dir="ltr">Mit besten Grüßen<br /><span style="font-size:0.9375rem;"><strong>das TLC-Team</strong></span></p>
+                    </div>
+
+
+
+                        
+
+
+                            <div class="d-flex flex-wrap">
+                                    <div
+                                        class="post-actions d-flex align-self-end justify-content-end flex-wrap ml-auto"
+                                        data-region="post-actions-container"
+                                        role="menubar"
+                                        aria-label='Osterferien &amp;amp; Erreichbarkeit von Bogosavljevic Nikola'
+                                        aria-controls="p228194"
+                                    >
+                                                <a
+                                                    data-region="post-action"
+                                                    href="https://moodle.technikum-wien.at/mod/forum/discuss.php?d=123293#p228194"
+                                                    class="btn btn-link"
+                                                    title="Dauerhafter Link zu diesem Beitrag"
+                                                    aria-label="Dauerhafter Link zu diesem Beitrag"
+                                                    role="menuitem"
+                                                >
+                                                    Dauerlink
+                                                </a>
+                                    </div>
+                            </div>
+
+                                           <div class="link text-right">
+                       <a href="https://moodle.technikum-wien.at/mod/forum/discuss.php?d=123293"
+                          aria-label="Diskutieren Sie das Thema: Osterferien &amp;amp; Erreichbarkeit">
+                           Thema diskutieren
+                       </a>&nbsp;(0 Antworten)
+                   </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div data-region="replies-container">
+        </div>
+</article>
+           <article
+    id="p226320"
+    class="forum-post-container mb-2"
+    data-post-id="226320"
+    data-region="post"
+    data-target="226320-target"
+    tabindex="0"
+    aria-labelledby="post-header-226320-6626c9c8709516626c9c8662466"
+    aria-describedby="post-content-226320"
+>
+    <div
+        class="d-flex border p-2 mb-2 forumpost focus-target  "
+        aria-label='Wegweiser durch die Lehre für Lektor*innen! von Bogosavljevic Nikola'
+        data-post-id="226320" data-content="forum-post"
+    >
+        
+
+        <div class="d-flex flex-column w-100"  data-region-content="forum-post-core">
+            <header id="post-header-226320-6626c9c8709516626c9c8662466" class="mb-2 header row d-flex">
+                        <div class="mr-2" style="width: 45px;">
+                                <img
+                                    class="rounded-circle w-100"
+                                    src="https://moodle.technikum-wien.at/pluginfile.php/1653844/user/icon/fhtw/f1?rev=27523119"
+                                    alt="Nutzerbild von Bogosavljevic Nikola"
+                                    aria-hidden="true"
+                                    title="Nutzerbild von Bogosavljevic Nikola"
+                                >
+                        </div>
+                <div class="d-flex flex-column">
+                        <h3 class="h6 font-weight-bold mb-0" data-region-content="forum-post-core-subject" data-reply-subject="Re: Wegweiser durch die Lehre für Lektor*innen!" >Wegweiser durch die Lehre für Lektor*innen!</h3>
+                        <div class="mb-3" tabindex="-1">
+                            von <a href="https://moodle.technikum-wien.at/user/view.php?id=31753&course=1">Bogosavljevic Nikola</a> - <time datetime="2024-02-19T15:39:48+01:00">Montag, 19. Februar 2024, 15:39</time>
+                        </div>
+                </div>
+            </header>
+
+            <div class="d-flex body-content-container">
+                        <div class="mr-2 author-groups-container" style="width: 45px; flex-shrink: 0">
+                        </div>
+
+                <div class="no-overflow w-100 content-alignment-container">
+                    <div id="post-content-226320" class="post-content-container">
+                        <p dir="ltr">Liebe Lektor*innen,</p><p dir="ltr"><span style="font-size:0.9375rem;">wir möchten Sie herzlich auf den Kurs "<a href="https://moodle.technikum-wien.at/course/view.php?id=21928" target="_blank" rel="noreferrer noopener"><strong>Wegweiser durch die Lehre</strong></a>" hinweisen - Ihre ultimative <strong>Orientierungshilfe für den Lehralltag</strong><strong>!</strong> Hier erfahren Sie alles Wichtige, von Ihren ersten Lehraufträgen bis hin zu den richtigen Ansprechpartner*innen für Unterstützung und Informationen.</span><br /></p><p dir="ltr"><span style="font-size:0.9375rem;">Nutzen Sie auch die Gelegenheit, am kommenden <strong>Mittwoch um 8:30 Uhr</strong> an der Veranstaltung "<strong>Update Lehre</strong>" teilzunehmen. Hier erhalten Sie die neuesten Informationen und können sich mit Kolleg*innen austauschen. </span><span style="font-size:0.9375rem;">Melden Sie sich noch heute <a href="https://www.technikum-wien.at/update-lehre/" target="_blank" rel="noreferrer noopener"><strong>HIER</strong></a> an und seien Sie dabei!</span></p><p dir="ltr">Mit besten Grüßen,<br /><strong>das TLC-Team</strong></p>
+                    </div>
+
+
+
+                        
+
+
+                            <div class="d-flex flex-wrap">
+                                    <div
+                                        class="post-actions d-flex align-self-end justify-content-end flex-wrap ml-auto"
+                                        data-region="post-actions-container"
+                                        role="menubar"
+                                        aria-label='Wegweiser durch die Lehre für Lektor*innen! von Bogosavljevic Nikola'
+                                        aria-controls="p226320"
+                                    >
+                                                <a
+                                                    data-region="post-action"
+                                                    href="https://moodle.technikum-wien.at/mod/forum/discuss.php?d=121987#p226320"
+                                                    class="btn btn-link"
+                                                    title="Dauerhafter Link zu diesem Beitrag"
+                                                    aria-label="Dauerhafter Link zu diesem Beitrag"
+                                                    role="menuitem"
+                                                >
+                                                    Dauerlink
+                                                </a>
+                                    </div>
+                            </div>
+
+                                           <div class="link text-right">
+                       <a href="https://moodle.technikum-wien.at/mod/forum/discuss.php?d=121987"
+                          aria-label="Diskutieren Sie das Thema: Wegweiser durch die Lehre für Lektor*innen!">
+                           Thema diskutieren
+                       </a>&nbsp;(0 Antworten)
+                   </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div data-region="replies-container">
+        </div>
+</article>
+            <a href="https://moodle.technikum-wien.at/mod/forum/view.php?id=74">Ältere Themen...</a>
+
+</div>
+</div>
+</div>
+        <div id="resources" class="col-12 col-xl-5 p-2"><div class="theme_fhtw-resources m-2 p-3 text-white">
+    
+    <div class="course-content">
+    <div class="sitetopic">
+        <ul class="topics frontpage">
+                <li id="section-1"
+                    class="section course-section main  clearfix
+                             
+                            "
+                    data-sectionid="1"
+                    data-sectionreturnid="1"
+                    data-for="section"
+                    data-id="13"
+                    data-number="1"
+                >
+                    <div class="course-section-header d-flex"
+                        data-for="section_title"
+                        data-id="13"
+                        data-number="1"
+                    >
+                            <div data-region="sectionbadges" class="sectionbadges d-flex align-items-center">
+                            </div>
+                            </div>
+                            <div id="coursecontentcollapse1"
+                                class="content 
+                                    
+                                ">
+                                <div class=" my-3" data-for="sectioninfo">
+                                        <div class="section_availability">
+                                        </div>
+                            </div>
+                                    <ul class="section m-0 p-0 img-text  d-block " data-for="cmlist">
+                                                <li
+                                                    class="activity activity-wrapper label modtype_label   "
+                                                    id="module-310486"
+                                                    data-for="cmitem"
+                                                    data-id="310486"
+                                                >
+                                                        <div class="activity-item focus-control activityinline" data-activityname="Ressourcen">
+                                                                <div class="bulkselect d-none" data-for="cmBulkSelect">
+                                                                    <input
+                                                                        id="cmCheckbox310486"
+                                                                        type="checkbox"
+                                                                        data-id="310486"
+                                                                        data-action="toggleSelectionCm"
+                                                                        data-bulkcheckbox="1"
+                                                                    >
+                                                                    <label class="sr-only" for="cmCheckbox310486">
+                                                                        Aktivität Ressourcen auswählen
+                                                                    </label>
+                                                                </div>
+
+                                                                <div class="activity-grid noname-grid">
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                        <div class="activity-altcontent d-flex text-break ">
+                                                                            <div class="no-overflow"><div class="no-overflow"><h2 style="text-align: center;">Ressourcen</h2><hr id="null"></div></div>
+                                                                        </div>
+                                                                
+                                                                
+                                                                </div>
+                                                        </div>
+                                                </li>
+                                                <li
+                                                    class="activity activity-wrapper label modtype_label   "
+                                                    id="module-310179"
+                                                    data-for="cmitem"
+                                                    data-id="310179"
+                                                >
+                                                        <div class="activity-item focus-control activityinline" data-activityname="Fernlehre (Leitfäden für Lehrende)">
+                                                                <div class="bulkselect d-none" data-for="cmBulkSelect">
+                                                                    <input
+                                                                        id="cmCheckbox310179"
+                                                                        type="checkbox"
+                                                                        data-id="310179"
+                                                                        data-action="toggleSelectionCm"
+                                                                        data-bulkcheckbox="1"
+                                                                    >
+                                                                    <label class="sr-only" for="cmCheckbox310179">
+                                                                        Aktivität Fernlehre (Leitfäden für Lehrende) auswählen
+                                                                    </label>
+                                                                </div>
+
+                                                                <div class="activity-grid noname-grid">
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                        <div class="activity-altcontent d-flex text-break ">
+                                                                            <div class="no-overflow"><div class="no-overflow"><p><b><span class="" style="font-size: large; color: rgb(0, 104, 158);"><span class="" style="color: rgb(255, 255, 255);">Fernlehre&nbsp;</span><b><span class="" style="color: rgb(255, 255, 255);">(Leitfäden für Lehrende)</span></b><span class="" style="color: rgb(255, 255, 255);"></span></span></b></p></div></div>
+                                                                        </div>
+                                                                
+                                                                
+                                                                </div>
+                                                        </div>
+                                                </li>
+                                                <li
+                                                    class="activity activity-wrapper label modtype_label   "
+                                                    id="module-451602"
+                                                    data-for="cmitem"
+                                                    data-id="451602"
+                                                >
+                                                        <div class="activity-item focus-control activityinline" data-activityname=" Prüfungen online durchführen">
+                                                                <div class="bulkselect d-none" data-for="cmBulkSelect">
+                                                                    <input
+                                                                        id="cmCheckbox451602"
+                                                                        type="checkbox"
+                                                                        data-id="451602"
+                                                                        data-action="toggleSelectionCm"
+                                                                        data-bulkcheckbox="1"
+                                                                    >
+                                                                    <label class="sr-only" for="cmCheckbox451602">
+                                                                        Aktivität  Prüfungen online durchführen auswählen
+                                                                    </label>
+                                                                </div>
+
+                                                                <div class="activity-grid noname-grid">
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                        <div class="activity-altcontent d-flex text-break ">
+                                                                            <div class="no-overflow"><div class="no-overflow"><a href="https://moodle.technikum-wien.at/course/view.php?id=12931"><i style="font-size:28px;" class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Prüfungen online durchführen</a><br></div></div>
+                                                                        </div>
+                                                                
+                                                                
+                                                                </div>
+                                                        </div>
+                                                </li>
+                                                <li
+                                                    class="activity activity-wrapper label modtype_label   "
+                                                    id="module-451598"
+                                                    data-for="cmitem"
+                                                    data-id="451598"
+                                                >
+                                                        <div class="activity-item focus-control activityinline" data-activityname="  (Kopie)">
+                                                                <div class="bulkselect d-none" data-for="cmBulkSelect">
+                                                                    <input
+                                                                        id="cmCheckbox451598"
+                                                                        type="checkbox"
+                                                                        data-id="451598"
+                                                                        data-action="toggleSelectionCm"
+                                                                        data-bulkcheckbox="1"
+                                                                    >
+                                                                    <label class="sr-only" for="cmCheckbox451598">
+                                                                        Aktivität   (Kopie) auswählen
+                                                                    </label>
+                                                                </div>
+
+                                                                <div class="activity-grid noname-grid">
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                        <div class="activity-altcontent d-flex text-break ">
+                                                                            <div class="no-overflow"><div class="no-overflow"><p>&nbsp;</p></div></div>
+                                                                        </div>
+                                                                
+                                                                
+                                                                </div>
+                                                        </div>
+                                                </li>
+                                                <li
+                                                    class="activity activity-wrapper label modtype_label   "
+                                                    id="module-451597"
+                                                    data-for="cmitem"
+                                                    data-id="451597"
+                                                >
+                                                        <div class="activity-item focus-control activityinline" data-activityname="Moodle-Hilfe für Lehrende">
+                                                                <div class="bulkselect d-none" data-for="cmBulkSelect">
+                                                                    <input
+                                                                        id="cmCheckbox451597"
+                                                                        type="checkbox"
+                                                                        data-id="451597"
+                                                                        data-action="toggleSelectionCm"
+                                                                        data-bulkcheckbox="1"
+                                                                    >
+                                                                    <label class="sr-only" for="cmCheckbox451597">
+                                                                        Aktivität Moodle-Hilfe für Lehrende auswählen
+                                                                    </label>
+                                                                </div>
+
+                                                                <div class="activity-grid noname-grid">
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                        <div class="activity-altcontent d-flex text-break ">
+                                                                            <div class="no-overflow"><div class="no-overflow"><p><b><span class="" style="font-size: large; color: rgb(255, 255, 255);">Moodle-Hilfe für Lehrende</span></b></p></div></div>
+                                                                        </div>
+                                                                
+                                                                
+                                                                </div>
+                                                        </div>
+                                                </li>
+                                                <li
+                                                    class="activity activity-wrapper label modtype_label   "
+                                                    id="module-451604"
+                                                    data-for="cmitem"
+                                                    data-id="451604"
+                                                >
+                                                        <div class="activity-item focus-control activityinline" data-activityname=" Moodle-Handbuch (Kopie) (Kopie)">
+                                                                <div class="bulkselect d-none" data-for="cmBulkSelect">
+                                                                    <input
+                                                                        id="cmCheckbox451604"
+                                                                        type="checkbox"
+                                                                        data-id="451604"
+                                                                        data-action="toggleSelectionCm"
+                                                                        data-bulkcheckbox="1"
+                                                                    >
+                                                                    <label class="sr-only" for="cmCheckbox451604">
+                                                                        Aktivität  Moodle-Handbuch (Kopie) (Kopie) auswählen
+                                                                    </label>
+                                                                </div>
+
+                                                                <div class="activity-grid noname-grid">
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                        <div class="activity-altcontent d-flex text-break ">
+                                                                            <div class="no-overflow"><div class="no-overflow"><a href="https://cis.technikum-wien.at/cms/dms.php?id=3555"><i style="font-size:28px;" class="fa fa-book" aria-hidden="true"></i>&nbsp;Moodle-Handbuch</a><br></div></div>
+                                                                        </div>
+                                                                
+                                                                
+                                                                </div>
+                                                        </div>
+                                                </li>
+                                                <li
+                                                    class="activity activity-wrapper label modtype_label   "
+                                                    id="module-310491"
+                                                    data-for="cmitem"
+                                                    data-id="310491"
+                                                >
+                                                        <div class="activity-item focus-control activityinline" data-activityname=" Moodle-Beispielkurs">
+                                                                <div class="bulkselect d-none" data-for="cmBulkSelect">
+                                                                    <input
+                                                                        id="cmCheckbox310491"
+                                                                        type="checkbox"
+                                                                        data-id="310491"
+                                                                        data-action="toggleSelectionCm"
+                                                                        data-bulkcheckbox="1"
+                                                                    >
+                                                                    <label class="sr-only" for="cmCheckbox310491">
+                                                                        Aktivität  Moodle-Beispielkurs auswählen
+                                                                    </label>
+                                                                </div>
+
+                                                                <div class="activity-grid noname-grid">
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                        <div class="activity-altcontent d-flex text-break ">
+                                                                            <div class="no-overflow"><div class="no-overflow"><a href="https://moodle.technikum-wien.at/course/view.php?id=5682"><i style="font-size:28px;" class="fa fa-map" aria-hidden="true"></i>&nbsp;Moodle-Beispielkurs</a></div></div>
+                                                                        </div>
+                                                                
+                                                                
+                                                                </div>
+                                                        </div>
+                                                </li>
+                                                <li
+                                                    class="activity activity-wrapper label modtype_label   "
+                                                    id="module-310492"
+                                                    data-for="cmitem"
+                                                    data-id="310492"
+                                                >
+                                                        <div class="activity-item focus-control activityinline" data-activityname=" Video-Tutorials">
+                                                                <div class="bulkselect d-none" data-for="cmBulkSelect">
+                                                                    <input
+                                                                        id="cmCheckbox310492"
+                                                                        type="checkbox"
+                                                                        data-id="310492"
+                                                                        data-action="toggleSelectionCm"
+                                                                        data-bulkcheckbox="1"
+                                                                    >
+                                                                    <label class="sr-only" for="cmCheckbox310492">
+                                                                        Aktivität  Video-Tutorials auswählen
+                                                                    </label>
+                                                                </div>
+
+                                                                <div class="activity-grid noname-grid">
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                        <div class="activity-altcontent d-flex text-break ">
+                                                                            <div class="no-overflow"><div class="no-overflow"><a href="https://moodle.technikum-wien.at/mod/page/view.php?id=299409"><i style="font-size:28px;" class="fa fa-film" aria-hidden="true"></i>&nbsp;Video-Tutorials</a></div></div>
+                                                                        </div>
+                                                                
+                                                                
+                                                                </div>
+                                                        </div>
+                                                </li>
+                                                <li
+                                                    class="activity activity-wrapper label modtype_label   "
+                                                    id="module-658852"
+                                                    data-for="cmitem"
+                                                    data-id="658852"
+                                                >
+                                                        <div class="activity-item focus-control activityinline" data-activityname="__ Wegweiser durch die Lehre">
+                                                                <div class="bulkselect d-none" data-for="cmBulkSelect">
+                                                                    <input
+                                                                        id="cmCheckbox658852"
+                                                                        type="checkbox"
+                                                                        data-id="658852"
+                                                                        data-action="toggleSelectionCm"
+                                                                        data-bulkcheckbox="1"
+                                                                    >
+                                                                    <label class="sr-only" for="cmCheckbox658852">
+                                                                        Aktivität __ Wegweiser durch die Lehre auswählen
+                                                                    </label>
+                                                                </div>
+
+                                                                <div class="activity-grid noname-grid">
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                        <div class="activity-altcontent d-flex text-break ">
+                                                                            <div class="no-overflow"><div class="no-overflow"><a href="https://moodle.technikum-wien.at/course/view.php?id=21928"><i style="font-size:28px;" class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;Wegweiser durch die Lehre</a><br></div></div>
+                                                                        </div>
+                                                                
+                                                                
+                                                                </div>
+                                                        </div>
+                                                </li>
+                                                <li
+                                                    class="activity activity-wrapper label modtype_label   "
+                                                    id="module-1528977"
+                                                    data-for="cmitem"
+                                                    data-id="1528977"
+                                                >
+                                                        <div class="activity-item focus-control activityinline" data-activityname="  (Kopie) (Kopie) (Kopie)">
+                                                                <div class="bulkselect d-none" data-for="cmBulkSelect">
+                                                                    <input
+                                                                        id="cmCheckbox1528977"
+                                                                        type="checkbox"
+                                                                        data-id="1528977"
+                                                                        data-action="toggleSelectionCm"
+                                                                        data-bulkcheckbox="1"
+                                                                    >
+                                                                    <label class="sr-only" for="cmCheckbox1528977">
+                                                                        Aktivität   (Kopie) (Kopie) (Kopie) auswählen
+                                                                    </label>
+                                                                </div>
+
+                                                                <div class="activity-grid noname-grid">
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                        <div class="activity-altcontent d-flex text-break ">
+                                                                            <div class="no-overflow"><div class="no-overflow"><p>&nbsp;</p></div></div>
+                                                                        </div>
+                                                                
+                                                                
+                                                                </div>
+                                                        </div>
+                                                </li>
+                                                <li
+                                                    class="activity activity-wrapper label modtype_label   "
+                                                    id="module-283346"
+                                                    data-for="cmitem"
+                                                    data-id="283346"
+                                                >
+                                                        <div class="activity-item focus-control activityinline" data-activityname="FHTW Infos &amp;amp; Tools">
+                                                                <div class="bulkselect d-none" data-for="cmBulkSelect">
+                                                                    <input
+                                                                        id="cmCheckbox283346"
+                                                                        type="checkbox"
+                                                                        data-id="283346"
+                                                                        data-action="toggleSelectionCm"
+                                                                        data-bulkcheckbox="1"
+                                                                    >
+                                                                    <label class="sr-only" for="cmCheckbox283346">
+                                                                        Aktivität FHTW Infos &amp;amp; Tools auswählen
+                                                                    </label>
+                                                                </div>
+
+                                                                <div class="activity-grid noname-grid">
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                        <div class="activity-altcontent d-flex text-break ">
+                                                                            <div class="no-overflow"><div class="no-overflow"><p><b><span class="" style="font-size: large; color: rgb(255, 255, 255);">FHTW Infos &amp; Tools</span></b></p></div></div>
+                                                                        </div>
+                                                                
+                                                                
+                                                                </div>
+                                                        </div>
+                                                </li>
+                                                <li
+                                                    class="activity activity-wrapper label modtype_label   "
+                                                    id="module-310515"
+                                                    data-for="cmitem"
+                                                    data-id="310515"
+                                                >
+                                                        <div class="activity-item focus-control activityinline" data-activityname=" FHTW-Infobase">
+                                                                <div class="bulkselect d-none" data-for="cmBulkSelect">
+                                                                    <input
+                                                                        id="cmCheckbox310515"
+                                                                        type="checkbox"
+                                                                        data-id="310515"
+                                                                        data-action="toggleSelectionCm"
+                                                                        data-bulkcheckbox="1"
+                                                                    >
+                                                                    <label class="sr-only" for="cmCheckbox310515">
+                                                                        Aktivität  FHTW-Infobase auswählen
+                                                                    </label>
+                                                                </div>
+
+                                                                <div class="activity-grid noname-grid">
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                        <div class="activity-altcontent d-flex text-break ">
+                                                                            <div class="no-overflow"><div class="no-overflow"><a href="https://moodle.technikum-wien.at/course/view.php?id=16415"><i style="font-size:28px;" class="fa fa-university" aria-hidden="true"></i>&nbsp;FHTW-Infobase</a></div></div>
+                                                                        </div>
+                                                                
+                                                                
+                                                                </div>
+                                                        </div>
+                                                </li>
+                                                <li
+                                                    class="activity activity-wrapper label modtype_label   "
+                                                    id="module-310506"
+                                                    data-for="cmitem"
+                                                    data-id="310506"
+                                                >
+                                                        <div class="activity-item focus-control activityinline" data-activityname="Study@FHTW">
+                                                                <div class="bulkselect d-none" data-for="cmBulkSelect">
+                                                                    <input
+                                                                        id="cmCheckbox310506"
+                                                                        type="checkbox"
+                                                                        data-id="310506"
+                                                                        data-action="toggleSelectionCm"
+                                                                        data-bulkcheckbox="1"
+                                                                    >
+                                                                    <label class="sr-only" for="cmCheckbox310506">
+                                                                        Aktivität Study@FHTW auswählen
+                                                                    </label>
+                                                                </div>
+
+                                                                <div class="activity-grid noname-grid">
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                        <div class="activity-altcontent d-flex text-break ">
+                                                                            <div class="no-overflow"><div class="no-overflow"><a href="https://moodle.technikum-wien.at/course/view.php?id=13353"><i style="font-size:28px;" class="fa fa-graduation-cap" aria-hidden="true"></i>Study@FHTW</a></div></div>
+                                                                        </div>
+                                                                
+                                                                
+                                                                </div>
+                                                        </div>
+                                                </li>
+                                                <li
+                                                    class="activity activity-wrapper label modtype_label   "
+                                                    id="module-310499"
+                                                    data-for="cmitem"
+                                                    data-id="310499"
+                                                >
+                                                        <div class="activity-item focus-control activityinline" data-activityname=" FHTW Kollaborations-Toolbox">
+                                                                <div class="bulkselect d-none" data-for="cmBulkSelect">
+                                                                    <input
+                                                                        id="cmCheckbox310499"
+                                                                        type="checkbox"
+                                                                        data-id="310499"
+                                                                        data-action="toggleSelectionCm"
+                                                                        data-bulkcheckbox="1"
+                                                                    >
+                                                                    <label class="sr-only" for="cmCheckbox310499">
+                                                                        Aktivität  FHTW Kollaborations-Toolbox auswählen
+                                                                    </label>
+                                                                </div>
+
+                                                                <div class="activity-grid noname-grid">
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                        <div class="activity-altcontent d-flex text-break ">
+                                                                            <div class="no-overflow"><div class="no-overflow"><a href="https://moodle.technikum-wien.at/course/view.php?id=6317"><i style="font-size:28px;" class="fa fa-users" aria-hidden="true"></i>&nbsp;FHTW Kollaborations-Toolbox</a></div></div>
+                                                                        </div>
+                                                                
+                                                                
+                                                                </div>
+                                                        </div>
+                                                </li>
+                                                <li
+                                                    class="activity activity-wrapper label modtype_label   "
+                                                    id="module-310495"
+                                                    data-for="cmitem"
+                                                    data-id="310495"
+                                                >
+                                                        <div class="activity-item focus-control activityinline" data-activityname=" ">
+                                                                <div class="bulkselect d-none" data-for="cmBulkSelect">
+                                                                    <input
+                                                                        id="cmCheckbox310495"
+                                                                        type="checkbox"
+                                                                        data-id="310495"
+                                                                        data-action="toggleSelectionCm"
+                                                                        data-bulkcheckbox="1"
+                                                                    >
+                                                                    <label class="sr-only" for="cmCheckbox310495">
+                                                                        Aktivität   auswählen
+                                                                    </label>
+                                                                </div>
+
+                                                                <div class="activity-grid noname-grid">
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                        <div class="activity-altcontent d-flex text-break ">
+                                                                            <div class="no-overflow"><div class="no-overflow"><p>&nbsp;</p></div></div>
+                                                                        </div>
+                                                                
+                                                                
+                                                                </div>
+                                                        </div>
+                                                </li>
+                                                <li
+                                                    class="activity activity-wrapper label modtype_label   "
+                                                    id="module-310180"
+                                                    data-for="cmitem"
+                                                    data-id="310180"
+                                                >
+                                                        <div class="activity-item focus-control activityinline" data-activityname="LV-Entwicklung">
+                                                                <div class="bulkselect d-none" data-for="cmBulkSelect">
+                                                                    <input
+                                                                        id="cmCheckbox310180"
+                                                                        type="checkbox"
+                                                                        data-id="310180"
+                                                                        data-action="toggleSelectionCm"
+                                                                        data-bulkcheckbox="1"
+                                                                    >
+                                                                    <label class="sr-only" for="cmCheckbox310180">
+                                                                        Aktivität LV-Entwicklung auswählen
+                                                                    </label>
+                                                                </div>
+
+                                                                <div class="activity-grid noname-grid">
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                        <div class="activity-altcontent d-flex text-break ">
+                                                                            <div class="no-overflow"><div class="no-overflow"><p><b><span class="" style="font-size: large; color: rgb(255, 255, 255);">LV-Entwicklung</span></b></p></div></div>
+                                                                        </div>
+                                                                
+                                                                
+                                                                </div>
+                                                        </div>
+                                                </li>
+                                                <li
+                                                    class="activity activity-wrapper label modtype_label   "
+                                                    id="module-395094"
+                                                    data-for="cmitem"
+                                                    data-id="395094"
+                                                >
+                                                        <div class="activity-item focus-control activityinline" data-activityname="Informationen zur Neu- und Weiterentwicklung von L...">
+                                                                <div class="bulkselect d-none" data-for="cmBulkSelect">
+                                                                    <input
+                                                                        id="cmCheckbox395094"
+                                                                        type="checkbox"
+                                                                        data-id="395094"
+                                                                        data-action="toggleSelectionCm"
+                                                                        data-bulkcheckbox="1"
+                                                                    >
+                                                                    <label class="sr-only" for="cmCheckbox395094">
+                                                                        Aktivität Informationen zur Neu- und Weiterentwicklung von L... auswählen
+                                                                    </label>
+                                                                </div>
+
+                                                                <div class="activity-grid noname-grid">
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                        <div class="activity-altcontent d-flex text-break ">
+                                                                            <div class="no-overflow"><div class="no-overflow"><h5><span style="color: rgb(0, 0, 0);" class=""><span class="" style="color: rgb(255, 255, 255); font-size: medium;"><a href="https://moodle.technikum-wien.at/course/view.php?id=16619&amp;section=3">Informationen zur Neu- und Weiterentwicklung von Lehrveranstaltungen finden Sie in der FHTW-Infobase Lehrende&nbsp;</a></span></span></h5></div></div>
+                                                                        </div>
+                                                                
+                                                                
+                                                                </div>
+                                                        </div>
+                                                </li>
+                                                <li
+                                                    class="activity activity-wrapper label modtype_label   "
+                                                    id="module-395093"
+                                                    data-for="cmitem"
+                                                    data-id="395093"
+                                                >
+                                                        <div class="activity-item focus-control activityinline" data-activityname="  (Kopie)">
+                                                                <div class="bulkselect d-none" data-for="cmBulkSelect">
+                                                                    <input
+                                                                        id="cmCheckbox395093"
+                                                                        type="checkbox"
+                                                                        data-id="395093"
+                                                                        data-action="toggleSelectionCm"
+                                                                        data-bulkcheckbox="1"
+                                                                    >
+                                                                    <label class="sr-only" for="cmCheckbox395093">
+                                                                        Aktivität   (Kopie) auswählen
+                                                                    </label>
+                                                                </div>
+
+                                                                <div class="activity-grid noname-grid">
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                        <div class="activity-altcontent d-flex text-break ">
+                                                                            <div class="no-overflow"><div class="no-overflow"><p>&nbsp;</p></div></div>
+                                                                        </div>
+                                                                
+                                                                
+                                                                </div>
+                                                        </div>
+                                                </li>
+                                                <li
+                                                    class="activity activity-wrapper label modtype_label   "
+                                                    id="module-395091"
+                                                    data-for="cmitem"
+                                                    data-id="395091"
+                                                >
+                                                        <div class="activity-item focus-control activityinline" data-activityname="Datenschutz und Sicherheit">
+                                                                <div class="bulkselect d-none" data-for="cmBulkSelect">
+                                                                    <input
+                                                                        id="cmCheckbox395091"
+                                                                        type="checkbox"
+                                                                        data-id="395091"
+                                                                        data-action="toggleSelectionCm"
+                                                                        data-bulkcheckbox="1"
+                                                                    >
+                                                                    <label class="sr-only" for="cmCheckbox395091">
+                                                                        Aktivität Datenschutz und Sicherheit auswählen
+                                                                    </label>
+                                                                </div>
+
+                                                                <div class="activity-grid noname-grid">
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                        <div class="activity-altcontent d-flex text-break ">
+                                                                            <div class="no-overflow"><div class="no-overflow"><p><b><span class="" style="font-size: large; color: rgb(255, 255, 255);">Datenschutz und Sicherheit</span></b></p></div></div>
+                                                                        </div>
+                                                                
+                                                                
+                                                                </div>
+                                                        </div>
+                                                </li>
+                                                <li
+                                                    class="activity activity-wrapper label modtype_label   "
+                                                    id="module-395092"
+                                                    data-for="cmitem"
+                                                    data-id="395092"
+                                                >
+                                                        <div class="activity-item focus-control activityinline" data-activityname=" Datenschutzinformationen (Kopie)">
+                                                                <div class="bulkselect d-none" data-for="cmBulkSelect">
+                                                                    <input
+                                                                        id="cmCheckbox395092"
+                                                                        type="checkbox"
+                                                                        data-id="395092"
+                                                                        data-action="toggleSelectionCm"
+                                                                        data-bulkcheckbox="1"
+                                                                    >
+                                                                    <label class="sr-only" for="cmCheckbox395092">
+                                                                        Aktivität  Datenschutzinformationen (Kopie) auswählen
+                                                                    </label>
+                                                                </div>
+
+                                                                <div class="activity-grid noname-grid">
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                        <div class="activity-altcontent d-flex text-break ">
+                                                                            <div class="no-overflow"><div class="no-overflow"><a href="https://moodle.technikum-wien.at/admin/tool/policy/viewall.php"><i style="font-size:28px;" class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;Datenschutzinformationen</a></div></div>
+                                                                        </div>
+                                                                
+                                                                
+                                                                </div>
+                                                        </div>
+                                                </li>
+                                                <li
+                                                    class="activity activity-wrapper label modtype_label   "
+                                                    id="module-318190"
+                                                    data-for="cmitem"
+                                                    data-id="318190"
+                                                >
+                                                        <div class="activity-item focus-control activityinline" data-activityname=" Löschung von Kursen">
+                                                                <div class="bulkselect d-none" data-for="cmBulkSelect">
+                                                                    <input
+                                                                        id="cmCheckbox318190"
+                                                                        type="checkbox"
+                                                                        data-id="318190"
+                                                                        data-action="toggleSelectionCm"
+                                                                        data-bulkcheckbox="1"
+                                                                    >
+                                                                    <label class="sr-only" for="cmCheckbox318190">
+                                                                        Aktivität  Löschung von Kursen auswählen
+                                                                    </label>
+                                                                </div>
+
+                                                                <div class="activity-grid noname-grid">
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                        <div class="activity-altcontent d-flex text-break ">
+                                                                            <div class="no-overflow"><div class="no-overflow"><a href="https://moodle.technikum-wien.at/mod/page/view.php?id=318191"><i style="font-size:28px;" class="fa fa-trash" aria-hidden="true"></i>&nbsp;Löschung von Kursen</a></div></div>
+                                                                        </div>
+                                                                
+                                                                
+                                                                </div>
+                                                        </div>
+                                                </li>
+                                                <li
+                                                    class="activity activity-wrapper label modtype_label   "
+                                                    id="module-310508"
+                                                    data-for="cmitem"
+                                                    data-id="310508"
+                                                >
+                                                        <div class="activity-item focus-control activityinline" data-activityname=" Datenschutz bei Freischaltung des Gastzugang...">
+                                                                <div class="bulkselect d-none" data-for="cmBulkSelect">
+                                                                    <input
+                                                                        id="cmCheckbox310508"
+                                                                        type="checkbox"
+                                                                        data-id="310508"
+                                                                        data-action="toggleSelectionCm"
+                                                                        data-bulkcheckbox="1"
+                                                                    >
+                                                                    <label class="sr-only" for="cmCheckbox310508">
+                                                                        Aktivität  Datenschutz bei Freischaltung des Gastzugang... auswählen
+                                                                    </label>
+                                                                </div>
+
+                                                                <div class="activity-grid noname-grid">
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                        <div class="activity-altcontent d-flex text-break ">
+                                                                            <div class="no-overflow"><div class="no-overflow"><a href="https://moodle.technikum-wien.at/mod/page/view.php?id=283343"><i style="font-size:28px;" class="fa fa-lock" aria-hidden="true"></i>&nbsp;Datenschutz bei Freischaltung des Gastzugangs</a></div></div>
+                                                                        </div>
+                                                                
+                                                                
+                                                                </div>
+                                                        </div>
+                                                </li>
+                                                <li
+                                                    class="activity activity-wrapper label modtype_label   "
+                                                    id="module-310496"
+                                                    data-for="cmitem"
+                                                    data-id="310496"
+                                                >
+                                                        <div class="activity-item focus-control activityinline" data-activityname="Label">
+                                                                <div class="bulkselect d-none" data-for="cmBulkSelect">
+                                                                    <input
+                                                                        id="cmCheckbox310496"
+                                                                        type="checkbox"
+                                                                        data-id="310496"
+                                                                        data-action="toggleSelectionCm"
+                                                                        data-bulkcheckbox="1"
+                                                                    >
+                                                                    <label class="sr-only" for="cmCheckbox310496">
+                                                                        Aktivität Label auswählen
+                                                                    </label>
+                                                                </div>
+
+                                                                <div class="activity-grid noname-grid">
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                        <div class="activity-altcontent d-flex text-break ">
+                                                                            <div class="no-overflow"><div class="no-overflow"><p></p><p><br><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><br><p><p><br><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><br><br></p></div></div>
+                                                                        </div>
+                                                                
+                                                                
+                                                                </div>
+                                                        </div>
+                                                </li>
+                                                <li
+                                                    class="activity activity-wrapper page modtype_page   "
+                                                    id="module-283343"
+                                                    data-for="cmitem"
+                                                    data-id="283343"
+                                                >
+                                                        <div class="activity-item focus-control " data-activityname="Informationen zum Datenschutz bei Freischaltung des Gastzugangs">
+                                                                <div class="bulkselect d-none" data-for="cmBulkSelect">
+                                                                    <input
+                                                                        id="cmCheckbox283343"
+                                                                        type="checkbox"
+                                                                        data-id="283343"
+                                                                        data-action="toggleSelectionCm"
+                                                                        data-bulkcheckbox="1"
+                                                                    >
+                                                                    <label class="sr-only" for="cmCheckbox283343">
+                                                                        Aktivität Informationen zum Datenschutz bei Freischaltung des Gastzugangs auswählen
+                                                                    </label>
+                                                                </div>
+
+                                                                <div class="activity-grid ">
+                                                                
+                                                                                                    <a href="https://moodle.technikum-wien.at/mod/page/view.php?id=283343"
+                                                                                                        class="activity-icon activityiconcontainer smaller content btn btn-link courseicon align-self-start mr-2"
+                                                                                                        
+                                                                                                    >
+                                                                                                        <img src="https://moodle.technikum-wien.at/theme/image.php/fhtw/page/1713788901/monologo?filtericon=1" class="activityicon "
+                                                                                                             alt="Icon Textseite"
+                                                                                                        >
+                                                                                                    </a>
+                                                                                
+                                                                                    <div class="activity-name-area activity-instance d-flex flex-column mr-2 ">
+                                                                                        <div class="activitytitle media  modtype_page position-relative align-self-start">
+                                                                                            <div class="media-body align-self-center">
+                                                                                                <div class="activityname">
+                                                                                                                <a href="https://moodle.technikum-wien.at/mod/page/view.php?id=283343" class=" aalink stretched-link" onclick="">        <span class="instancename">Informationen zum Datenschutz bei Freischaltung des Gastzugangs <span class="accesshide " > Textseite</span></span>    </a>
+                                                                                                            
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                </div>
+                                                        </div>
+                                                </li>
+                                                <li
+                                                    class="activity activity-wrapper page modtype_page   "
+                                                    id="module-283344"
+                                                    data-for="cmitem"
+                                                    data-id="283344"
+                                                >
+                                                        <div class="activity-item focus-control " data-activityname="Aktivitäten oder Themen für Gäste unsichtbar machen">
+                                                                <div class="bulkselect d-none" data-for="cmBulkSelect">
+                                                                    <input
+                                                                        id="cmCheckbox283344"
+                                                                        type="checkbox"
+                                                                        data-id="283344"
+                                                                        data-action="toggleSelectionCm"
+                                                                        data-bulkcheckbox="1"
+                                                                    >
+                                                                    <label class="sr-only" for="cmCheckbox283344">
+                                                                        Aktivität Aktivitäten oder Themen für Gäste unsichtbar machen auswählen
+                                                                    </label>
+                                                                </div>
+
+                                                                <div class="activity-grid ">
+                                                                
+                                                                                                    <a href="https://moodle.technikum-wien.at/mod/page/view.php?id=283344"
+                                                                                                        class="activity-icon activityiconcontainer smaller content btn btn-link courseicon align-self-start mr-2"
+                                                                                                        
+                                                                                                    >
+                                                                                                        <img src="https://moodle.technikum-wien.at/theme/image.php/fhtw/page/1713788901/monologo?filtericon=1" class="activityicon "
+                                                                                                             alt="Icon Textseite"
+                                                                                                        >
+                                                                                                    </a>
+                                                                                
+                                                                                    <div class="activity-name-area activity-instance d-flex flex-column mr-2 ">
+                                                                                        <div class="activitytitle media  modtype_page position-relative align-self-start">
+                                                                                            <div class="media-body align-self-center">
+                                                                                                <div class="activityname">
+                                                                                                                <a href="https://moodle.technikum-wien.at/mod/page/view.php?id=283344" class=" aalink stretched-link" onclick="">        <span class="instancename">Aktivitäten oder Themen für Gäste unsichtbar machen <span class="accesshide " > Textseite</span></span>    </a>
+                                                                                                            
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                </div>
+                                                        </div>
+                                                </li>
+                                                <li
+                                                    class="activity activity-wrapper page modtype_page   "
+                                                    id="module-368767"
+                                                    data-for="cmitem"
+                                                    data-id="368767"
+                                                >
+                                                        <div class="activity-item focus-control " data-activityname="FH Technikum Wien Kursübersicht">
+                                                                <div class="bulkselect d-none" data-for="cmBulkSelect">
+                                                                    <input
+                                                                        id="cmCheckbox368767"
+                                                                        type="checkbox"
+                                                                        data-id="368767"
+                                                                        data-action="toggleSelectionCm"
+                                                                        data-bulkcheckbox="1"
+                                                                    >
+                                                                    <label class="sr-only" for="cmCheckbox368767">
+                                                                        Aktivität FH Technikum Wien Kursübersicht auswählen
+                                                                    </label>
+                                                                </div>
+
+                                                                <div class="activity-grid ">
+                                                                
+                                                                                                    <a href="https://moodle.technikum-wien.at/mod/page/view.php?id=368767"
+                                                                                                        class="activity-icon activityiconcontainer smaller content btn btn-link courseicon align-self-start mr-2"
+                                                                                                        
+                                                                                                    >
+                                                                                                        <img src="https://moodle.technikum-wien.at/theme/image.php/fhtw/page/1713788901/monologo?filtericon=1" class="activityicon "
+                                                                                                             alt="Icon Textseite"
+                                                                                                        >
+                                                                                                    </a>
+                                                                                
+                                                                                    <div class="activity-name-area activity-instance d-flex flex-column mr-2 ">
+                                                                                        <div class="activitytitle media  modtype_page position-relative align-self-start">
+                                                                                            <div class="media-body align-self-center">
+                                                                                                <div class="activityname">
+                                                                                                                <a href="https://moodle.technikum-wien.at/mod/page/view.php?id=368767" class=" aalink stretched-link" onclick="">        <span class="instancename">FH Technikum Wien Kursübersicht <span class="accesshide " > Textseite</span></span>    </a>
+                                                                                                            
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                </div>
+                                                        </div>
+                                                </li>
+                                                <li
+                                                    class="activity activity-wrapper page modtype_page   "
+                                                    id="module-318191"
+                                                    data-for="cmitem"
+                                                    data-id="318191"
+                                                >
+                                                        <div class="activity-item focus-control " data-activityname="Informationen zur Kurslöschung">
+                                                                <div class="bulkselect d-none" data-for="cmBulkSelect">
+                                                                    <input
+                                                                        id="cmCheckbox318191"
+                                                                        type="checkbox"
+                                                                        data-id="318191"
+                                                                        data-action="toggleSelectionCm"
+                                                                        data-bulkcheckbox="1"
+                                                                    >
+                                                                    <label class="sr-only" for="cmCheckbox318191">
+                                                                        Aktivität Informationen zur Kurslöschung auswählen
+                                                                    </label>
+                                                                </div>
+
+                                                                <div class="activity-grid ">
+                                                                
+                                                                                                    <a href="https://moodle.technikum-wien.at/mod/page/view.php?id=318191"
+                                                                                                        class="activity-icon activityiconcontainer smaller content btn btn-link courseicon align-self-start mr-2"
+                                                                                                        
+                                                                                                    >
+                                                                                                        <img src="https://moodle.technikum-wien.at/theme/image.php/fhtw/page/1713788901/monologo?filtericon=1" class="activityicon "
+                                                                                                             alt="Icon Textseite"
+                                                                                                        >
+                                                                                                    </a>
+                                                                                
+                                                                                    <div class="activity-name-area activity-instance d-flex flex-column mr-2 ">
+                                                                                        <div class="activitytitle media  modtype_page position-relative align-self-start">
+                                                                                            <div class="media-body align-self-center">
+                                                                                                <div class="activityname">
+                                                                                                                <a href="https://moodle.technikum-wien.at/mod/page/view.php?id=318191" class=" aalink stretched-link" onclick="">        <span class="instancename">Informationen zur Kurslöschung <span class="accesshide " > Textseite</span></span>    </a>
+                                                                                                            
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                </div>
+                                                        </div>
+                                                </li>
+                                        </ul>
+                            
+                    </div>
+                </li>
+        </ul>
+    </div>
+</div>
+</div>
+</div>
+    </div>
+</div><br /></div>
+                    
+                    
+
+                </section>
+            </div>
+        </div>
+    </div>
+    
+    
+    <footer id="page-footer" class="footer-popover bg-white">
+        <div data-region="footer-container-popover">
+            <button class="btn btn-icon bg-secondary icon-no-margin btn-footer-popover" data-action="footer-popover" aria-label="Fußbereich anzeigen">
+                <i class="icon fa fa-question fa-fw " aria-hidden="true"  ></i>
+            </button>
+        </div>
+        <div class="footer-content-popover container" data-region="footer-content-popover">
+            <div class="footer-section p-3 border-bottom">
+                <div class="logininfo">
+                    <div class="logininfo">Sie sind nicht angemeldet. (<a href="https://moodle.technikum-wien.at/login/index.php">Login</a>)</div>
+                </div>
+                <div class="tool_usertours-resettourcontainer">
+                </div>
+    
+                <a class="mobilelink" href="https://download.moodle.org/mobile?version=2023100902&amp;lang=de&amp;iosappid=633359593&amp;androidappid=com.moodle.moodlemobile&amp;siteurl=https%3A%2F%2Fmoodle.technikum-wien.at">Laden Sie die mobile App</a><div class="policiesfooter"><a href="https://moodle.technikum-wien.at/admin/tool/policy/viewall.php?returnurl=https%3A%2F%2Fmoodle.technikum-wien.at%2F%3Fredirect%3D0">Datenschutzinfos</a></div>
+                <script>
+//<![CDATA[
+var require = {
+    baseUrl : 'https://moodle.technikum-wien.at/lib/requirejs.php/1713788901/',
+    // We only support AMD modules with an explicit define() statement.
+    enforceDefine: true,
+    skipDataMain: true,
+    waitSeconds : 0,
+
+    paths: {
+        jquery: 'https://moodle.technikum-wien.at/lib/javascript.php/1713788901/lib/jquery/jquery-3.7.1.min',
+        jqueryui: 'https://moodle.technikum-wien.at/lib/javascript.php/1713788901/lib/jquery/ui-1.13.2/jquery-ui.min',
+        jqueryprivate: 'https://moodle.technikum-wien.at/lib/javascript.php/1713788901/lib/requirejs/jquery-private'
+    },
+
+    // Custom jquery config map.
+    map: {
+      // '*' means all modules will get 'jqueryprivate'
+      // for their 'jquery' dependency.
+      '*': { jquery: 'jqueryprivate' },
+      // Stub module for 'process'. This is a workaround for a bug in MathJax (see MDL-60458).
+      '*': { process: 'core/first' },
+
+      // 'jquery-private' wants the real jQuery module
+      // though. If this line was not here, there would
+      // be an unresolvable cyclic dependency.
+      jqueryprivate: { jquery: 'jquery' }
+    }
+};
+
+//]]>
+</script>
+<script src="https://moodle.technikum-wien.at/lib/javascript.php/1713788901/lib/requirejs/require.min.js"></script>
+<script>
+//<![CDATA[
+M.util.js_pending("core/first");
+require(['core/first'], function() {
+require(['core/prefetch'])
+;
+M.util.js_pending('filter_mathjaxloader/loader'); require(['filter_mathjaxloader/loader'], function(amd) {amd.configure({"mathjaxconfig":"MathJax.Hub.Config({\r\n    config: [\"Accessible.js\", \"Safe.js\"],\r\n    errorSettings: { message: [\"!\"] },\r\n    skipStartupTypeset: true,\r\n   TeX: { extensions: [\"AMSmath.js\",\"AMSsymbols.js\",\"mhchem.js\",\"noErrors.js\",\"noUndefined.js\"] },\r\n    messageStyle: \"none\"\r\n});\r\n","lang":"de"}); M.util.js_complete('filter_mathjaxloader/loader');});;
+require(["media_videojs/loader"], function(loader) {
+    loader.setUp('de');
+});;
+
+
+require(['jquery', 'tool_policy/jquery-eu-cookie-law-popup', 'tool_policy/policyactions'], function($, Popup, ActionsMod) {
+        // Initialise the guest popup.
+        $(document).ready(function() {
+            // Only show message if there is some policy related to guests.
+                // Get localised messages.
+                var textmessage = "Wenn Sie weiter auf dieser Webseite arbeiten möchten, bestätigen Sie bitte unsere Nutzungsrichtlinie:" +
+                   "<ul>" +
+                   "<li>" +
+                   "<a href=\"https://moodle.technikum-wien.at/admin/tool/policy/view.php?versionid=2&amp;returnurl=https%3A%2F%2Fmoodle.technikum-wien.at%2F%3Fredirect%3D0\" " +
+                   "   data-action=\"view-guest\" data-versionid=\"2\" data-behalfid=\"1\" >" +
+                   "Datenschutzinformationen" +
+                   "</a>" +
+                   "</li>" +
+                   "" +
+                   "</ul>";
+                var continuemessage = "Fortsetzen";
+
+                // Initialize popup.
+                $(document.body).addClass('eupopup');
+                if ($(".eupopup").length > 0) {
+                    $(document).euCookieLawPopup().init({
+                        popupPosition: 'bottom',
+                        popupTitle: '',
+                        popupText: textmessage,
+                        buttonContinueTitle: continuemessage,
+                        buttonLearnmoreTitle: '',
+                        compactStyle: true,
+                    });
+                }
+
+            // Initialise the JS for the modal window which displays the policy versions.
+            ActionsMod.init('[data-action="view-guest"]');
+        });
+});
+
+;
+
+    require(['core/moremenu'], function(moremenu) {
+        moremenu(document.querySelector('#moremenu-6626c9c866126-navbar-nav'));
+    });
+;
+
+require(
+[
+    'jquery',
+],
+function(
+    $
+) {
+    var uniqid = "6626c9c8697836626c9c8662464";
+    var container = $('#searchinput-navbar-' + uniqid);
+    var opensearch = container.find('[data-action="opensearch"]');
+    var input = container.find('[data-region="input"]');
+    var submit = container.find('[data-action="submit"]');
+
+    submit.on('click', function(e) {
+        if (input.val() === '') {
+            e.preventDefault();
+        }
+    });
+    container.on('hidden.bs.collapse', function() {
+        opensearch.removeClass('d-none');
+        input.val('');
+    });
+    container.on('show.bs.collapse', function() {
+        opensearch.addClass('d-none');
+    });
+    container.on('shown.bs.collapse', function() {
+        input.focus();
+    });
+});
+;
+
+require(
+[
+    'jquery',
+],
+function(
+    $
+) {
+    var uniqid = "6626c9c869b5e6626c9c8662465";
+    var container = $('#searchinput-navbar-' + uniqid);
+    var opensearch = container.find('[data-action="opensearch"]');
+    var input = container.find('[data-region="input"]');
+    var submit = container.find('[data-action="submit"]');
+
+    submit.on('click', function(e) {
+        if (input.val() === '') {
+            e.preventDefault();
+        }
+    });
+    container.on('hidden.bs.collapse', function() {
+        opensearch.removeClass('d-none');
+        input.val('');
+    });
+    container.on('show.bs.collapse', function() {
+        opensearch.addClass('d-none');
+    });
+    container.on('shown.bs.collapse', function() {
+        input.focus();
+    });
+});
+;
+
+    require(['core/usermenu'], function(UserMenu) {
+        UserMenu.init();
+    });
+;
+
+require(['theme_boost/drawers']);
+;
+
+require(['theme_boost/footer-popover'], function(FooterPopover) {
+    FooterPopover.init();
+});
+;
+
+M.util.js_pending('theme_boost/loader');
+require(['theme_boost/loader', 'theme_boost/drawer'], function(Loader, Drawer) {
+    Drawer.init();
+    M.util.js_complete('theme_boost/loader');
+});
+;
+M.util.js_pending('plagiarism_turnitinsim/cv_launch'); require(['plagiarism_turnitinsim/cv_launch'], function(amd) {amd.openCv(); M.util.js_complete('plagiarism_turnitinsim/cv_launch');});;
+M.util.js_pending('plagiarism_turnitinsim/resend_submission'); require(['plagiarism_turnitinsim/resend_submission'], function(amd) {amd.resendSubmission(); M.util.js_complete('plagiarism_turnitinsim/resend_submission');});;
+M.util.js_pending('plagiarism_turnitinsim/eula_response'); require(['plagiarism_turnitinsim/eula_response'], function(amd) {amd.eulaResponse(); M.util.js_complete('plagiarism_turnitinsim/eula_response');});;
+
+    require(['jquery', 'mod_forum/discussion_list'], function($, View) {
+        var root = $('#discussion-list-6626c9c8709516626c9c8662466');
+        View.init(root);
+    });
+;
+M.util.js_pending('core/notification'); require(['core/notification'], function(amd) {amd.init(2, []); M.util.js_complete('core/notification');});;
+M.util.js_pending('core/log'); require(['core/log'], function(amd) {amd.setConfig({"level":"warn"}); M.util.js_complete('core/log');});;
+M.util.js_pending('core/page_global'); require(['core/page_global'], function(amd) {amd.init(); M.util.js_complete('core/page_global');});;
+M.util.js_pending('core/utility'); require(['core/utility'], function(amd) {M.util.js_complete('core/utility');});
+    M.util.js_complete("core/first");
+});
+//]]>
+</script>
+<script src="https://moodle.technikum-wien.at/extralibs/MathJax/MathJax.js?delayStartupUntil=configured"></script>
+<script>
+//<![CDATA[
+M.str = {"moodle":{"lastmodified":"Zuletzt ge\u00e4ndert","name":"Name","error":"Fehler","info":"Infos","yes":"Ja","no":"Nein","ok":"OK","cancel":"Abbrechen","confirm":"Best\u00e4tigen","areyousure":"Sind Sie sicher?","closebuttontitle":"Schlie\u00dfen","unknownerror":"Unbekannter Fehler","file":"Datei","url":"URL","collapseall":"Alles einklappen","expandall":"Alles aufklappen"},"repository":{"type":"Typ","size":"Gr\u00f6\u00dfe","invalidjson":"Ung\u00fcltiger JSON-Text","nofilesattached":"Keine Datei","filepicker":"Dateiauswahl","logout":"Abmelden","nofilesavailable":"Keine Dateien vorhanden","norepositoriesavailable":"Sie k\u00f6nnen hier zur Zeit keine Dateien hochladen.","fileexistsdialogheader":"Datei bereits vorhanden","fileexistsdialog_editor":"Eine Datei mit diesem Namen wurde bereits an den Text angeh\u00e4ngt, den Sie gerade bearbeiten","fileexistsdialog_filemanager":"Eine Datei mit diesem Namen wurde bereits an den Text angeh\u00e4ngt","renameto":"Nach '{$a}' umbenennen","referencesexist":"Es gibt {$a} Links zu dieser Datei.","select":"W\u00e4hlen Sie"},"admin":{"confirmdeletecomments":"M\u00f6chten Sie die ausgew\u00e4hlten Kommentare wirklich l\u00f6schen?","confirmation":"Best\u00e4tigung"},"plagiarism_turnitinsim":{"submissiondisplaystatus:queued":"In der Warteschlange","eulaaccepted":"Danke, dass Sie die neue Turnitin-EULA akzeptiert haben. Alle zuk\u00fcnftigen \u00dcbermittlungen werden nun zur Verarbeitung an Turnitin gesendet.","euladeclined":"Ihre \u00dcbermittlungen werden nicht an Turnitin gesendet, da Sie die Turnitin-Endbenutzer-Lizenzvereinbarung nicht akzeptiert haben."},"debug":{"debuginfo":"Debug-Info","line":"Zeile","stacktrace":"Stack trace"},"langconfig":{"labelsep":":\u00a0"}};
+//]]>
+</script>
+<script>
+//<![CDATA[
+(function() {Y.use("moodle-filter_glossary-autolinker",function() {M.filter_glossary.init_filter_autolinking({"courseid":0});
+});
+M.util.help_popups.setup(Y);
+ M.util.js_pending('random6626c9c8662467'); Y.on('domready', function() { M.util.js_complete("init");  M.util.js_complete('random6626c9c8662467'); });
+})();
+//]]>
+</script>
+
+            </div>
+            <div class="footer-section p-3">
+                <div>Powered by <a href="https://moodle.com">Moodle</a></div>
+            </div>
+        </div>
+    
+        <div class="footer-content-debugging footer-dark bg-dark text-light">
+            <div class="container-fluid footer-dark-inner">
+                
+            </div>
+        </div>
+    </footer>
+</div>
+
+
+</body></html>

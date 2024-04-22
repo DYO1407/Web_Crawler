@@ -42,8 +42,8 @@
         <h2>PDF Links Found:</h2>
         {% if pdf_links %}
             <ul>
-                {% for link in pdf_links %}
-                <li><a href="{{ link }}" target="_blank">{{ link }}</a></li>
+                {% for pdf in pdf_links %}
+                <li><a href="{{ pdf.url }}" target="_blank">{{ pdf.filename }}</a></li>
                 {% endfor %}
             </ul>
         {% else %}

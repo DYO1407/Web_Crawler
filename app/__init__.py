@@ -14,4 +14,6 @@ mail = Mail(app)
 from app import routes  # Import routes at the end to avoid circular imports
 
 with app.app_context():
+    
+
     db.create_all()
