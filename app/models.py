@@ -43,6 +43,7 @@ class CrawlData(db.Model):
     crawl_date = db.Column(db.DateTime, default=datetime.utcnow)
     pdf_links = db.Column(db.Text)  # Stores PDF links as comma-separated strings
     pdf_paths = db.Column(db.Text)  # Add this line to store the paths to PDF files
+    word_stats = db.Column(db.Text)
     
     
     def __repr__(self):

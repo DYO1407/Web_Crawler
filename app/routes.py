@@ -18,6 +18,11 @@ import os;
 import asyncio
 from datetime import datetime
 
+import re
+from collections import Counter
+import PyPDF2
+
+
 
 
 @login_manager.user_loader
@@ -137,13 +142,36 @@ async def download_pdf(session, url, user_id):
         print(f"Error downloading {url}: {e}")
     return None
 
+
+def extract_text_from_pdf(pdf_path):
+    try:
+        with open(pdf_path, 'rb') as file:
+            reader = PyPDF2.PdfReader(file)
+            text = ""
+            for page in reader.pages:
+                text += page.extract_text()
+            return text
+    except Exception as e:
+        print(f"Error extracting text from {pdf_path}: {e}")
+        return ""
+
+def get_word_frequency(text):
+    words = re.findall(r'\b[a-zA-ZäöüÄÖÜß]{2,}\b', text.lower())  # Wörter mit mindestens zwei Buchstaben
+    word_counts = Counter(words)
+    most_common_words = word_counts.most_common(10)
+    print(f"Most common words: {most_common_words}")  # Debugging-Ausgabe
+    return most_common_words
+
+
 # Modify the crawl function to download PDFs
 
-async def crawl(url, level, user_id, session):
+async def crawl(url, level, user_id):
     visited = set()
     to_visit = [(url, 1)]
     all_pdf_links = set()
     base_domain = urlparse(url).netloc
+    word_stats = {}
+
     async with aiohttp.ClientSession() as session:
         while to_visit:
             current_url, current_depth = to_visit.pop(0)
@@ -152,25 +180,30 @@ async def crawl(url, level, user_id, session):
             visited.add(current_url)
             content = await fetch(session, current_url)
             if isinstance(content, tuple):
-                # Download the PDF and add to all_pdf_links if successful
                 save_path = await download_pdf(session, content[0], user_id)
                 if save_path:
                     all_pdf_links.add((content[0], content[1], save_path))
+                    text = extract_text_from_pdf(save_path)
+                    word_stats[content[0]] = get_word_frequency(text)
             elif isinstance(content, str):
                 soup = BeautifulSoup(content, 'html.parser')
                 pdf_links = find_pdf_links(current_url, soup)
-                # Download each found PDF and update all_pdf_links
                 for link, filename in pdf_links:
                     save_path = await download_pdf(session, link, user_id)
                     if save_path:
                         all_pdf_links.add((link, filename, save_path))
+                        text = extract_text_from_pdf(save_path)
+                        word_stats[link] = get_word_frequency(text)
                 if current_depth < level:
                     links = get_all_links(current_url, soup)
                     for link in links:
                         link_domain = urlparse(link).netloc
                         if (level == 2 and link_domain == base_domain) or level == 3:
                             to_visit.append((link, current_depth + 1))
-    return visited, all_pdf_links
+    return visited, all_pdf_links, word_stats
+
+
+
 
 
 @app.route('/start_crawl', methods=['POST'])
@@ -180,22 +213,38 @@ async def start_crawl():
     level = int(request.form.get('depth', 1))
     user_id = current_user.id
 
-    async with aiohttp.ClientSession() as session:
-        visited, pdf_links_tuples = await crawl(url, level, user_id, session)
+    visited, pdf_links_tuples, word_stats = await crawl(url, level, user_id)
 
-    # Extract URLs and filenames for the template
     pdf_links_for_template = [{'url': link, 'filename': filename} for link, filename, _ in pdf_links_tuples]
-
-    # Convert tuples to strings for storing in the database
     pdf_links_string = ','.join(f"{link}|{filename}" for link, filename, _ in pdf_links_tuples)
     pdf_paths_string = ','.join(f"{path}" for _, _, path in pdf_links_tuples)
+    word_stats_string = ';'.join(f"{link}|{','.join(f'{word}:{count}' for word, count in stats)}" for link, stats in word_stats.items())
 
-    new_crawl = CrawlData(user_id=user_id, url=url, pdf_links=pdf_links_string, pdf_paths=pdf_paths_string, crawl_date=datetime.utcnow())
+    # Check if no PDFs were found
+    if not pdf_links_tuples:
+        pdf_links_string = "no_pdfs_found"
+        word_stats_string = ""
+
+    print(f"Word stats string: {word_stats_string}")  # Debugging-Ausgabe
+
+    new_crawl = CrawlData(
+        user_id=user_id,
+        url=url,
+        pdf_links=pdf_links_string,
+        pdf_paths=pdf_paths_string,
+        word_stats=word_stats_string,
+        crawl_date=datetime.utcnow()
+    )
     db.session.add(new_crawl)
     db.session.commit()
 
     flash('Crawl erfolgreich gestartet. PDF-Links wurden gespeichert.')
     return render_template('crawl.html', visited=visited, pdf_links=pdf_links_for_template)
+
+
+
+
+
 
 
 

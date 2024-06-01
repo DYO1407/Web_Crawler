@@ -1,23 +1,85 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<div class="container">
-    <h1>Profil von {{ current_user.username }}</h1>
-    <h2>Meine Suchprotokolle</h2>
-    <ul>
+<div class="container mt-4">
+    <h1 class="mb-4">Profil von {{ current_user.username }}</h1>
+    <h2 class="mb-4">Meine Suchprotokolle</h2>
+    <div class="row">
         {% for record in crawl_records %}
-        <li>
-            <strong>Gesucht am:</strong> {{ record.crawl_date }}<br>
-            <strong>URL:</strong> {{ record.url }}<br>
-            <strong>PDF-Links:</strong>
-            <ul>
-                {% for link in record.pdf_links.split(',') %}
-                {% set url, name = link.split('|') %}
-                <li><a href="{{ url }}" target="_blank">{{ name }}</a></li>
-                {% endfor %}
-            </ul>
-        </li>
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">Gesucht am: {{ record.crawl_date }}</h5>
+                    <p class="card-text"><strong>URL:</strong> <a href="{{ record.url }}" target="_blank" class="text-info">{{ record.url }}</a></p>
+                    <h6><strong>PDF-Links:</strong></h6>
+                    <ul class="list-unstyled">
+                        {% if record.pdf_links == 'no_pdfs_found' %}
+                        <li>Keine PDFs gefunden</li>
+                        {% else %}
+                            {% set modal_counter = 0 %}
+                            {% for link in record.pdf_links.split(',') %}
+                            {% if '|' in link %}
+                            {% set url, name = link.split('|') %}
+                            <li>
+                                <a href="{{ url }}" target="_blank" class="text-decoration-none">{{ name }}</a>
+                                <button type="button" class="btn btn-sm btn-outline-info ml-2" data-toggle="modal" data-target="#modal{{ record.id }}_{{ modal_counter }}">Wortstatistiken</button>
+                                {% set modal_counter = modal_counter + 1 %}
+                            </li>
+                            {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for each PDF -->
+        {% if record.pdf_links != 'no_pdfs_found' %}
+            {% set modal_counter = 0 %}
+            {% for stat in record.word_stats.split(';') %}
+            {% if '|' in stat %}
+            {% set pdf_url, word_counts = stat.split('|', 1) %}
+            <div class="modal fade" id="modal{{ record.id }}_{{ modal_counter }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Wortstatistiken für <a href="{{ pdf_url }}" target="_blank" class="text-info">PDF Link</a></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-hover">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>Wort</th>
+                                            <th>Anzahl</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% set word_count_pairs = word_counts.split(',') %}
+                                        {% for word_count in word_count_pairs %}
+                                        {% if ':' in word_count %}
+                                        {% set word, count = word_count.split(':', 1) %}
+                                        <tr>
+                                            <td class="{% if loop.index == 1 %}bg-warning{% endif %}">{{ word }}</td>
+                                            <td class="{% if loop.index == 1 %}bg-warning{% endif %}">{{ count }}</td>
+                                        </tr>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% set modal_counter = modal_counter + 1 %}
+            {% endif %}
+            {% endfor %}
+        {% endif %}
         {% endfor %}
-    </ul>
+    </div>
 </div>
 {% endblock %}
