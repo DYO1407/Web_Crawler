@@ -1,4 +1,3 @@
-/* styles.css */
 body {
     background-color: #7496f4;
 }
@@ -63,4 +62,35 @@ body {
     justify-content: space-between;
     width: 100%;
     gap: 10px;
+}
+
+.search-form {
+    margin-bottom: 20px;
+}
+
+.search-form .input-group {
+    display: flex;
+    align-items: center;
+}
+
+.search-form .form-control {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.search-results-container .card {
+    margin-bottom: 20px;
+}
+
+.search-results .card-body {
+    padding: 15px;
+}
+
+.search-results .card-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.custom-highlight {
+    background-color: #efa020 !important; /* You can change this to any color you like */
 }

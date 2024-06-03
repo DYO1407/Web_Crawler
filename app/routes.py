@@ -58,13 +58,11 @@ def login():
 
     return render_template('login.html')
 
-
 @app.route('/profile')
 @login_required
 def profile():
     crawl_records = CrawlData.query.filter_by(user_id=current_user.id).order_by(CrawlData.crawl_date.desc()).all()
 
-    # Parse the word stats for each record
     for record in crawl_records:
         word_stats_list = []
         for stat in record.word_stats.split(';'):
@@ -79,11 +77,19 @@ def profile():
                         try:
                             word_counts_dict[word] = int(count)
                         except ValueError:
-                            continue  # Skip this word count if it cannot be converted to int
-                word_stats_list.append({'pdf_url': pdf_url, 'word_counts': word_counts_dict})
+                            continue
+                
+                max_word, max_count = None, 0
+                for word, count in word_counts_dict.items():
+                    if count > max_count:
+                        max_word, max_count = word, count
+                
+                word_stats_list.append({'pdf_url': pdf_url, 'word_counts': word_counts_dict, 'max_word': max_word, 'max_count': max_count})
+        
         record.parsed_word_stats = word_stats_list
 
     return render_template('profile.html', crawl_records=crawl_records, enumerate=enumerate)
+
 
 
 
@@ -166,12 +172,14 @@ def extract_text_from_pdf(pdf_path):
         print(f"Error extracting text from {pdf_path}: {e}")
         return ""
 
+
 def get_word_frequency(text):
     words = re.findall(r'\b[a-zA-ZäöüÄÖÜß]{2,}\b', text.lower())  # Wörter mit mindestens zwei Buchstaben
     word_counts = Counter(words)
     most_common_words = word_counts.most_common(10)
     print(f"Most common words: {most_common_words}")  # Debugging-Ausgabe
     return most_common_words
+
 
 async def crawl(url, level, user_id):
     visited = set()
@@ -228,8 +236,6 @@ async def start_crawl():
         pdf_links_string = "no_pdfs_found"
         word_stats_string = ""
 
-    print(f"Word stats string: {word_stats_string}")  # Debugging output
-
     new_crawl = CrawlData(
         user_id=user_id,
         url=url,
@@ -243,7 +249,6 @@ async def start_crawl():
 
     flash('Crawl erfolgreich gestartet. PDF-Links wurden gespeichert.')
     return render_template('crawl.html', visited=visited, pdf_links=pdf_links_for_template)
-
 
 
 
@@ -332,22 +337,41 @@ def reset_password(token):
 @app.route('/search_word', methods=['POST'])
 @login_required
 def search_word():
-    search_word = request.json.get('search_word').lower()
+    search_word = request.form.get('search_word').lower()
     matching_pdfs = []
 
     crawl_records = CrawlData.query.filter_by(user_id=current_user.id).all()
+
     for record in crawl_records:
+        word_stats_list = []
+        pdf_url_to_stats = {}
         for stat in record.word_stats.split(';'):
             if '|' in stat:
                 pdf_url, word_counts = stat.split('|', 1)
                 word_count_pairs = word_counts.split(',')
+                word_counts_dict = {}
                 for word_count in word_count_pairs:
-                    if ':' in word_count:
-                        word, count = word_count.split(':', 1)
-                        if word == search_word:
-                            matching_pdfs.append({'pdf_url': pdf_url, 'record_url': record.url, 'word': word, 'count': count})
+                    parts = word_count.split(':')
+                    if len(parts) == 2:
+                        word, count = parts
+                        try:
+                            word_counts_dict[word] = int(count)
+                        except ValueError:
+                            continue
+                pdf_url_to_stats[pdf_url] = word_counts_dict
+        record.parsed_word_stats = pdf_url_to_stats
 
-    return jsonify(matching_pdfs)
+    for record in crawl_records:
+        for pdf_url, word_counts in record.parsed_word_stats.items():
+            if search_word in word_counts:
+                matching_pdfs.append({
+                    'pdf_url': pdf_url,
+                    'record_url': record.url,
+                    'word': search_word,
+                    'count': word_counts[search_word]
+                })
+
+    return render_template('profile.html', crawl_records=crawl_records, search_results=matching_pdfs, enumerate=enumerate)
 
 
 @app.route('/debug/word_stats')
@@ -378,5 +402,24 @@ def check_data():
     return jsonify(data)
 
 
+# Import statement for PDFPage
+from pdfminer.pdfpage import PDFPage
 
+# Update the extract_text_from_pdf function to use pdfminer
+def extract_text_from_pdf(pdf_path):
+    try:
+        from io import StringIO
+        from pdfminer.high_level import extract_text_to_fp
+        from pdfminer.layout import LAParams
+        from pdfminer.pdfinterp import PDFResourceManager
+        from pdfminer.converter import TextConverter
 
+        output_string = StringIO()
+        with open(pdf_path, 'rb') as file:
+            extract_text_to_fp(file, output_string, laparams=LAParams(), output_type='text', codec=None)
+        text = output_string.getvalue()
+        print(f"Extracted text from {pdf_path}: {text[:500]}")  # Print the first 500 characters for inspection
+        return text
+    except Exception as e:
+        print(f"Error extracting text from {pdf_path}: {e}")
+        return ""
