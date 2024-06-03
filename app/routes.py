@@ -126,7 +126,7 @@ def wordcloud():
 
 
 
-@app.route('/profile')
+@app.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
     crawl_records = CrawlData.query.filter_by(user_id=current_user.id).order_by(CrawlData.crawl_date.desc()).all()
@@ -161,9 +161,24 @@ def profile():
                 })
 
         record.parsed_word_stats = word_stats_list
-        print(f"Record {record.id} parsed_word_stats: {record.parsed_word_stats}")
 
-    return render_template('profile.html', crawl_records=crawl_records, enumerate=enumerate)
+    search_results = []
+    if request.method == 'POST':
+        search_word = request.form.get('search_word').lower()
+        for record in crawl_records:
+            for pdf_stat in record.parsed_word_stats:
+                word_counts = pdf_stat['word_counts']
+                if search_word in word_counts:
+                    search_results.append({
+                        'pdf_url': pdf_stat['pdf_url'],
+                        'record_url': record.url,
+                        'word': search_word,
+                        'count': word_counts[search_word]
+                    })
+
+    return render_template('profile.html', crawl_records=crawl_records, search_results=search_results, enumerate=enumerate)
+
+
 
 
 @login_manager.user_loader
@@ -390,15 +405,15 @@ def register():
 @app.route('/logout')
 @login_required
 def logout():
-    try:
-        CrawlData.query.filter_by(user_id=current_user.id).delete()
-        db.session.commit()
-    except Exception as e:
-        print(f"Error while deleting user data: {e}")
+    #try:
+       # CrawlData.query.filter_by(user_id=current_user.id).delete()
+        #db.session.commit()
+    #except Exception as e:
+     #   print(f"Error while deleting user data: {e}")
 
-    session.clear()
+    #session.clear()
     logout_user()
-    flash('All your data has been cleared and you have been logged out.')
+    #flash('All your data has been cleared and you have been logged out.')
     return redirect(url_for('home'))
 
 
