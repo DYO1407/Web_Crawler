@@ -1,0 +1,149 @@
+/* Existing Styles */
+body {
+    background-color: #7496f4;
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.btn-outline-info {
+    border-radius: 50px;
+}
+
+.modal-lg {
+    max-width: 90%;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+}
+
+.pdf-link {
+    flex-grow: 1;
+    word-break: break-all;
+}
+
+.word-stats-btn {
+    margin-left: 10px;
+    flex-shrink: 0;
+}
+
+.pdf-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.pdf-link-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.pdf-list {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.pdf-item-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px;
+}
+
+.search-form {
+    margin-bottom: 20px;
+}
+
+.search-form .input-group {
+    display: flex;
+    align-items: center;
+}
+
+.search-form .form-control {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.search-results-container .card {
+    margin-bottom: 20px;
+}
+
+.search-results .card-body {
+    padding: 15px;
+}
+
+.search-results .card-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.custom-highlight {
+    background-color: #efa020 !important; /* You can change this to any color you like */
+}
+
+/* Additional Styles for Improved Look */
+body {
+    color: #343a40;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    margin-bottom: 10px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+h1, h3 {
+    color: #007bff;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+h3 {
+    margin-top: 20px;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+.form-check-label a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.form-check-label a:hover {
+    text-decoration: underline;
+}

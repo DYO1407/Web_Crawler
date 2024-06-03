@@ -4,6 +4,7 @@ BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'app.db')
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 SECRET_KEY = 'dein_geheimer_schluessel'
+SECURITY_PASSWORD_SALT = 'dein_passwort_salz'
 MAIL_SERVER = 'smtp.mail.yahoo.com'
 MAIL_PORT = 465
 MAIL_USE_TLS = False

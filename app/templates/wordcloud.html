@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}Word Cloud{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/wordcloud.css') }}">
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h3 class="card-title text-center">Available PDFs</h3>
+                    <form method="POST" action="{{ url_for('wordcloud') }}">
+                        <div class="form-group">
+                            <div class="pdf-list" style="max-height: 600px; overflow-y: auto;">
+                                {% for record in crawl_records %}
+                                    {% for pdf in record.parsed_word_stats %}
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="pdfs" value="{{ pdf.pdf_name }}" id="{{ pdf.pdf_name }}" {% if pdf.pdf_name in selected_pdfs %}checked{% endif %}>
+                                            <label class="form-check-label" for="{{ pdf.pdf_name }}" style="word-break: break-all;">
+                                                <a href="{{ pdf.pdf_url }}" target="_blank">{{ pdf.pdf_name }}</a>
+                                            </label>
+                                        </div>
+                                    {% endfor %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-block">Generate Word Cloud</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7 d-flex align-items-center justify-content-center">
+            {% if wordcloud_image %}
+                <img src="{{ wordcloud_image }}" alt="Word Cloud" class="img-fluid shadow-lg">
+            {% else %}
+                <div class="alert alert-info text-center" role="alert">
+                    Select PDFs to generate a word cloud.
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    {% if alert_message %}
+    <div class="alert alert-warning mt-3 text-center" role="alert">
+        {{ alert_message }}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

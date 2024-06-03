@@ -8,9 +8,11 @@ from app import mail
 import secrets
 from validators import url as url_validator
 from requests.exceptions import ConnectionError, Timeout, RequestException
-from run import hello
-import requests
 
+import requests
+from pdfminer.high_level import extract_text_to_fp
+from pdfminer.layout import LAParams
+from io import BytesIO, StringIO
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse
 import aiohttp
@@ -21,42 +23,108 @@ import re
 from collections import Counter
 import PyPDF2
 import logging
+import base64  # Import the base64 module
+
+from flask import send_file
+from wordcloud import WordCloud
+import io
+from itsdangerous import URLSafeTimedSerializer
 
 
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
+def extract_text_from_url(url):
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        file = BytesIO(response.content)
+        output_string = StringIO()
+        extract_text_to_fp(file, output_string, laparams=LAParams(), output_type='text', codec=None)
+        text = output_string.getvalue()
+        return text
+    except Exception as e:
+        print(f"Error extracting text from {url}: {e}")
+        return ""
 
 
-@app.route('/')
-def home():
-    return render_template('index.html')
-
-
-@app.route('/crawl', methods=['GET'])
+@app.route('/wordcloud', methods=['GET', 'POST'])
 @login_required
-def crawl_page():
-    return render_template('crawl.html')
+def wordcloud():
+    crawl_records = CrawlData.query.filter_by(user_id=current_user.id).order_by(CrawlData.crawl_date.desc()).all()
 
+    # Parse the word stats similar to the profile route
+    for record in crawl_records:
+        word_stats_list = []
+        for stat in record.word_stats.split(';'):
+            if '|' in stat:
+                pdf_url, word_counts = stat.split('|', 1)
+                word_count_pairs = word_counts.split(',')
+                word_counts_dict = {}
+                for word_count in word_count_pairs:
+                    parts = word_count.split(':')
+                    if len(parts) == 2:
+                        word, count = parts
+                        try:
+                            word_counts_dict[word] = int(count)
+                        except ValueError:
+                            continue
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    message = hello()
-    print("Message from hello():", message)
+                max_word, max_count = None, 0
+                for word, count in word_counts_dict.items():
+                    if count > max_count:
+                        max_word, max_count = word, count
+
+                word_stats_list.append({
+                    'pdf_url': pdf_url,
+                    'pdf_name': pdf_url.split('/')[-1],
+                    'word_counts': word_counts_dict,
+                    'max_word': max_word,
+                    'max_count': max_count
+                })
+
+        record.parsed_word_stats = word_stats_list
+
+    selected_pdfs = []
+    start_date = None
+    end_date = None
+    combined_text = ""
+    alert_message = ""
+
     if request.method == 'POST':
-        email = request.form.get('email')
-        password = request.form.get('password')
-        remember = True if request.form.get('remember') else False
+        selected_pdfs = request.form.getlist('pdfs')
+        start_date = request.form.get('start_date')
+        end_date = request.form.get('end_date')
 
-        user = User.query.filter_by(email=email).first()
+        if start_date and end_date:
+            start_date_dt = datetime.strptime(start_date, '%Y-%m-%dT%H:%M')
+            end_date_dt = datetime.strptime(end_date, '%Y-%m-%dT%H:%M')
+            selected_pdfs = []
+            for record in crawl_records:
+                if start_date_dt <= record.crawl_date <= end_date_dt:
+                    for pdf in record.parsed_word_stats:
+                        selected_pdfs.append(pdf['pdf_name'])
 
-        if user and check_password_hash(user.password, password):
-            login_user(user, remember=remember)
-            return redirect(url_for('crawl_page'))
-        else:
-            flash('Falsche Login-Daten!')
+        for record in crawl_records:
+            for pdf in record.parsed_word_stats:
+                if pdf['pdf_name'] in selected_pdfs:
+                    text = extract_text_from_url(pdf['pdf_url'])
+                    if text.strip():
+                        combined_text += text
+                    else:
+                        alert_message += f"PDF {pdf['pdf_name']} is empty or has no extractable text. "
 
-    return render_template('login.html')
+        if combined_text:
+            wordcloud = WordCloud(width=1800, height=1200, background_color='white').generate(combined_text)
+            image_stream = io.BytesIO()
+            wordcloud.to_image().save(image_stream, format='PNG')
+            image_stream.seek(0)
+            image_data = image_stream.getvalue()
+            base64_image = "data:image/png;base64," + base64.b64encode(image_data).decode('utf-8')
+            return render_template('wordcloud.html', crawl_records=crawl_records, wordcloud_image=base64_image, selected_pdfs=selected_pdfs, start_date=start_date, end_date=end_date, alert_message=alert_message)
+
+    return render_template('wordcloud.html', crawl_records=crawl_records, wordcloud_image=None, selected_pdfs=selected_pdfs, start_date=start_date, end_date=end_date, alert_message=alert_message)
+
+
+
+
 
 @app.route('/profile')
 @login_required
@@ -78,19 +146,60 @@ def profile():
                             word_counts_dict[word] = int(count)
                         except ValueError:
                             continue
-                
+
                 max_word, max_count = None, 0
                 for word, count in word_counts_dict.items():
                     if count > max_count:
                         max_word, max_count = word, count
-                
-                word_stats_list.append({'pdf_url': pdf_url, 'word_counts': word_counts_dict, 'max_word': max_word, 'max_count': max_count})
-        
+
+                word_stats_list.append({
+                    'pdf_url': pdf_url,
+                    'pdf_name': pdf_url.split('/')[-1],
+                    'word_counts': word_counts_dict,
+                    'max_word': max_word,
+                    'max_count': max_count
+                })
+
         record.parsed_word_stats = word_stats_list
+        print(f"Record {record.id} parsed_word_stats: {record.parsed_word_stats}")
 
     return render_template('profile.html', crawl_records=crawl_records, enumerate=enumerate)
 
 
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+
+@app.route('/crawl', methods=['GET'])
+@login_required
+def crawl_page():
+    return render_template('crawl.html')
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    
+   
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+        remember = True if request.form.get('remember') else False
+
+        user = User.query.filter_by(email=email).first()
+
+        if user and check_password_hash(user.password, password):
+            login_user(user, remember=remember)
+            return redirect(url_for('crawl_page'))
+        else:
+            flash('Falsche Login-Daten!')
+
+    return render_template('login.html')
 
 
 
@@ -251,8 +360,6 @@ async def start_crawl():
     return render_template('crawl.html', visited=visited, pdf_links=pdf_links_for_template)
 
 
-
-
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -295,16 +402,31 @@ def logout():
     return redirect(url_for('home'))
 
 
+
+def generate_confirmation_token(email):
+    serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+    return serializer.dumps(email, salt=app.config['SECURITY_PASSWORD_SALT'])
+
+def confirm_token(token, expiration=60):
+    serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+    try:
+        email = serializer.loads(
+            token,
+            salt=app.config['SECURITY_PASSWORD_SALT'],
+            max_age=expiration
+        )
+    except:
+        return False
+    return email
+
+
 @app.route('/forgot-password', methods=['GET', 'POST'])
 def forgot_password():
     if request.method == 'POST':
         email = request.form.get('email')
         user = User.query.filter_by(email=email).first()
         if user:
-            token = secrets.token_urlsafe(32)
-            user.reset_password_token = token
-            db.session.commit()
-
+            token = generate_confirmation_token(user.email)
             reset_link = url_for('reset_password', token=token, _external=True)
             msg = Message('Password Reset', sender='deyaa_yousef@yahoo.com', recipients=[user.email])
             msg.body = f'Visit this link to reset your password: {reset_link}'
@@ -316,22 +438,26 @@ def forgot_password():
             return redirect(url_for('forgot_password'))
     return render_template('forgot_password.html')
 
-
 @app.route('/reset-password/<token>', methods=['GET', 'POST'])
 def reset_password(token):
-    user = User.query.filter_by(reset_password_token=token).first()
-    if user:
-        if request.method == 'POST':
-            new_password = request.form.get('new_password')
-            user.password = new_password
-            user.reset_password_token = None
-            db.session.commit()
-            flash('Your password has been reset successfully.')
-            return redirect(url_for('login'))
-        return render_template('reset_password.html')
-    else:
-        flash('Invalid or expired token.')
+    email = confirm_token(token)
+    if not email:
+        flash('The reset link is invalid or has expired.')
         return redirect(url_for('forgot_password'))
+
+    user = User.query.filter_by(email=email).first()
+    if not user:
+        flash('Invalid email address.')
+        return redirect(url_for('forgot_password'))
+
+    if request.method == 'POST':
+        new_password = request.form.get('new_password')
+        user.password = generate_password_hash(new_password)
+        db.session.commit()
+        flash('Your password has been reset successfully.')
+        return redirect(url_for('login'))
+    return render_template('reset_password.html')
+
 
 
 @app.route('/search_word', methods=['POST'])
@@ -401,9 +527,6 @@ def check_data():
         })
     return jsonify(data)
 
-
-# Import statement for PDFPage
-from pdfminer.pdfpage import PDFPage
 
 # Update the extract_text_from_pdf function to use pdfminer
 def extract_text_from_pdf(pdf_path):

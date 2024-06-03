@@ -6,6 +6,7 @@
     <title>Web Crawler</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/wordcloud.css') }}" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -25,6 +26,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('wordcloud') }}">Wordcloud</a>
+                    </li>
                 {% else %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('login') }}">Login</a>
@@ -32,6 +37,8 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('register') }}">Registrieren</a>
                     </li>
+
+                  
                 {% endif %}
             </ul>
         </div>
