@@ -1,8 +1,8 @@
-from flask import Flask, render_template, redirect, url_for, request, flash, session
+from flask import Flask, jsonify, render_template, redirect, url_for, request, flash, session
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required, current_user
 from app import app, db, login_manager
-from app.models import User , CrawlData
+from app.models import User, CrawlData
 from flask_mail import Message
 from app import mail
 import secrets
@@ -14,71 +14,81 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse
 import aiohttp
-import os;
+import os
 import asyncio
 from datetime import datetime
-
 import re
 from collections import Counter
 import PyPDF2
-
-
+import logging
 
 
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-# Startseite
+
 @app.route('/')
 def home():
-    
     return render_template('index.html')
 
 
 @app.route('/crawl', methods=['GET'])
 @login_required
 def crawl_page():
-    # Stellen Sie sicher, dass hier nur 'crawl.html' gerendert wird.
     return render_template('crawl.html')
 
 
-#@app.route('/validate', methods=['GET'])
-##@login_required
-#def validate():
- #   return render_template('crawl.html')
-
-
-
-
-
-# Login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     message = hello()
-    print("Message from hello():", message) 
+    print("Message from hello():", message)
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
         remember = True if request.form.get('remember') else False
-        
+
         user = User.query.filter_by(email=email).first()
-        
+
         if user and check_password_hash(user.password, password):
             login_user(user, remember=remember)
-            # Ändere die Weiterleitung zur neuen Crawl-Seite
             return redirect(url_for('crawl_page'))
         else:
             flash('Falsche Login-Daten!')
-    
+
     return render_template('login.html')
+
 
 @app.route('/profile')
 @login_required
 def profile():
-    # Fetch the crawl data for the current user, ordered by date descending
     crawl_records = CrawlData.query.filter_by(user_id=current_user.id).order_by(CrawlData.crawl_date.desc()).all()
-    return render_template('profile.html', crawl_records=crawl_records)
+
+    # Parse the word stats for each record
+    for record in crawl_records:
+        word_stats_list = []
+        for stat in record.word_stats.split(';'):
+            if '|' in stat:
+                pdf_url, word_counts = stat.split('|', 1)
+                word_count_pairs = word_counts.split(',')
+                word_counts_dict = {}
+                for word_count in word_count_pairs:
+                    parts = word_count.split(':')
+                    if len(parts) == 2:
+                        word, count = parts
+                        try:
+                            word_counts_dict[word] = int(count)
+                        except ValueError:
+                            continue  # Skip this word count if it cannot be converted to int
+                word_stats_list.append({'pdf_url': pdf_url, 'word_counts': word_counts_dict})
+        record.parsed_word_stats = word_stats_list
+
+    return render_template('profile.html', crawl_records=crawl_records, enumerate=enumerate)
+
+
+
+
+
 
 
 async def fetch(session, url):
@@ -98,15 +108,14 @@ async def fetch(session, url):
     except Exception as e:
         print(f"Error fetching {url}: {e}")
         return None
-    
-    
+
+
 def is_valid(url):
-    """Check if `url` is a valid URL."""
     parsed = urlparse(url)
     return bool(parsed.netloc) and bool(parsed.scheme) and parsed.scheme in ['http', 'https']
 
+
 def get_all_links(url, soup):
-    """Extract and return all links from a BeautifulSoup object."""
     links = set()
     for link in soup.find_all('a', href=True):
         href = link['href']
@@ -114,6 +123,7 @@ def get_all_links(url, soup):
         if is_valid(full_url):
             links.add(full_url)
     return links
+
 
 def find_pdf_links(url, soup):
     pdf_links = set()
@@ -124,6 +134,7 @@ def find_pdf_links(url, soup):
             filename = full_url.split('/')[-1]
             pdf_links.add((full_url, filename))
     return pdf_links
+
 
 async def download_pdf(session, url, user_id):
     filename = url.split('/')[-1]
@@ -162,9 +173,6 @@ def get_word_frequency(text):
     print(f"Most common words: {most_common_words}")  # Debugging-Ausgabe
     return most_common_words
 
-
-# Modify the crawl function to download PDFs
-
 async def crawl(url, level, user_id):
     visited = set()
     to_visit = [(url, 1)]
@@ -202,10 +210,6 @@ async def crawl(url, level, user_id):
                             to_visit.append((link, current_depth + 1))
     return visited, all_pdf_links, word_stats
 
-
-
-
-
 @app.route('/start_crawl', methods=['POST'])
 @login_required
 async def start_crawl():
@@ -220,12 +224,11 @@ async def start_crawl():
     pdf_paths_string = ','.join(f"{path}" for _, _, path in pdf_links_tuples)
     word_stats_string = ';'.join(f"{link}|{','.join(f'{word}:{count}' for word, count in stats)}" for link, stats in word_stats.items())
 
-    # Check if no PDFs were found
     if not pdf_links_tuples:
         pdf_links_string = "no_pdfs_found"
         word_stats_string = ""
 
-    print(f"Word stats string: {word_stats_string}")  # Debugging-Ausgabe
+    print(f"Word stats string: {word_stats_string}")  # Debugging output
 
     new_crawl = CrawlData(
         user_id=user_id,
@@ -245,11 +248,6 @@ async def start_crawl():
 
 
 
-
-
-
-
-# Registrierung
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -262,7 +260,7 @@ def register():
             flash('Email already exists.')
             return redirect(url_for('register'))
 
-        hashed_password = generate_password_hash(password)  # Using the default secure method
+        hashed_password = generate_password_hash(password)
         new_user = User(username=username, email=email, password=hashed_password)
         db.session.add(new_user)
         try:
@@ -272,31 +270,26 @@ def register():
             flash(f'Error: Unable to register user. {str(e)}')
             return redirect(url_for('register'))
 
-        login_user(new_user)  # Automatically log in the new user
+        login_user(new_user)
         return redirect(url_for('home'))
     return render_template('register.html')
-
-
 
 
 @app.route('/logout')
 @login_required
 def logout():
     try:
-        # Delete all crawl records associated with the user
         CrawlData.query.filter_by(user_id=current_user.id).delete()
         db.session.commit()
     except Exception as e:
-        # Log the error, possibly handle it or notify someone
         print(f"Error while deleting user data: {e}")
 
-    # Clear the session and logout the user
     session.clear()
     logout_user()
     flash('All your data has been cleared and you have been logged out.')
     return redirect(url_for('home'))
 
-# Passwort vergessen
+
 @app.route('/forgot-password', methods=['GET', 'POST'])
 def forgot_password():
     if request.method == 'POST':
@@ -306,7 +299,7 @@ def forgot_password():
             token = secrets.token_urlsafe(32)
             user.reset_password_token = token
             db.session.commit()
-            
+
             reset_link = url_for('reset_password', token=token, _external=True)
             msg = Message('Password Reset', sender='deyaa_yousef@yahoo.com', recipients=[user.email])
             msg.body = f'Visit this link to reset your password: {reset_link}'
@@ -319,7 +312,6 @@ def forgot_password():
     return render_template('forgot_password.html')
 
 
-# Passwort zurücksetzen
 @app.route('/reset-password/<token>', methods=['GET', 'POST'])
 def reset_password(token):
     user = User.query.filter_by(reset_password_token=token).first()
@@ -327,7 +319,7 @@ def reset_password(token):
         if request.method == 'POST':
             new_password = request.form.get('new_password')
             user.password = new_password
-            user.reset_password_token = None  # Reset the token after password change
+            user.reset_password_token = None
             db.session.commit()
             flash('Your password has been reset successfully.')
             return redirect(url_for('login'))
@@ -335,3 +327,56 @@ def reset_password(token):
     else:
         flash('Invalid or expired token.')
         return redirect(url_for('forgot_password'))
+
+
+@app.route('/search_word', methods=['POST'])
+@login_required
+def search_word():
+    search_word = request.json.get('search_word').lower()
+    matching_pdfs = []
+
+    crawl_records = CrawlData.query.filter_by(user_id=current_user.id).all()
+    for record in crawl_records:
+        for stat in record.word_stats.split(';'):
+            if '|' in stat:
+                pdf_url, word_counts = stat.split('|', 1)
+                word_count_pairs = word_counts.split(',')
+                for word_count in word_count_pairs:
+                    if ':' in word_count:
+                        word, count = word_count.split(':', 1)
+                        if word == search_word:
+                            matching_pdfs.append({'pdf_url': pdf_url, 'record_url': record.url, 'word': word, 'count': count})
+
+    return jsonify(matching_pdfs)
+
+
+@app.route('/debug/word_stats')
+@login_required
+def debug_word_stats():
+    crawl_records = CrawlData.query.filter_by(user_id=current_user.id).all()
+    debug_info = []
+    for record in crawl_records:
+        debug_info.append({
+            'id': record.id,
+            'url': record.url,
+            'word_stats': record.word_stats
+        })
+    return jsonify(debug_info)
+
+
+@app.route('/check_data')
+@login_required
+def check_data():
+    crawl_records = CrawlData.query.filter_by(user_id=current_user.id).all()
+    data = []
+    for record in crawl_records:
+        data.append({
+            'id': record.id,
+            'url': record.url,
+            'word_stats': record.word_stats,
+        })
+    return jsonify(data)
+
+
+
+
